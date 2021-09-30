@@ -17,7 +17,6 @@ public class Bebida extends Produto {
         this.setPreco(preco);
     }
     public void fazerBebida() {
-
     }
     public int getMilitros() {
         return militros;
