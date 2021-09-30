@@ -8,14 +8,19 @@ public class Venda {
     private String Cliente;
 
     public void adicionarProduto() {
+
     }
     public void retirarProduto() {
+
     }
     public void adicionarCliente() {
+
     }
     public void desconto() {
+
     }
     public void finalizarVenda() {
+
     }
     public Produto[] getItensVendidos() {
         return itensVendidos;

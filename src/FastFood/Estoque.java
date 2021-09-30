@@ -1,13 +1,17 @@
 package FastFood;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Estoque {
     @Override
     public String toString() {
         return "Estoque [item=" + item + ", quantidade=" + quantidade + "]";
     }
+    private String nome;
+    private float custo;
     ArrayList<Insumo> item = new ArrayList<Insumo>();
     ArrayList<Integer> quantidade = new ArrayList<>();
+    private Scanner input = new Scanner(System.in);
 
     public Estoque(Insumo item, int quantidade) {
         super();
@@ -15,8 +19,10 @@ public class Estoque {
         this.quantidade.add(quantidade);
     }
     public void cadastrar(Insumo item, int quantidade) {
-        this.item.add(item);
-        this.quantidade.add(quantidade);
+        System.out.print("Nome do insumo: ");
+        nome = input.next();
+        System.out.print("Custo do insumo: ");
+        custo = input.nextFloat();
     }
     public void editar() {
     }
