@@ -5,16 +5,14 @@ public class Hamburguer extends Produto {
 
     @Override
     public String toString() {
-        return "Hamburguer [nome=" + getNome() + ", preco=" + getPreco() + ", tipo=" + getTipo() + "peso=" + peso + "]";
+        return "Hamburguer [nome=" + getNome() + ", preco=" + getPreco() + "peso=" + peso + "]";
     }
-    private float peso = 0;
     private Insumo composicao[];
-    public Hamburguer(String nome, String tipo, float preco,float peso) {
+    public Hamburguer(String nome, float preco, String tamanho) {
         super();
-        this.peso = peso;
         this.setNome(nome);
-        this.setTipo(tipo);
         this.setPreco(preco);
+        this.setTamnho(tamanho);
     }
     public void FazerHamburguer() {
 
