@@ -2,23 +2,23 @@ package FastFood;
 import java.util.Scanner;
 
 public class Insumo {
-    @Override
+    private static int size = 0;
+    private static int id;
     public String toString() {
         return "nome=" + nome + " Preço do insumo= R$" + custo;
     }
     private String nome;
-    private int id;
     private float custo;
     private Scanner input = new Scanner(System.in);
 
     public Insumo (String nome, float custo) {
     }
-
-    public void cadastrarInsumo() {
-
-
-    public void cadastrar() {
-
+    public static Insumo cadastrar(String nome, float custo) {
+        setNome(nome);
+        setCusto(custo);
+        addSize();
+        setId();
+        return null;
     }
     public void editar() {
 
@@ -26,23 +26,26 @@ public class Insumo {
     public void deletar() {
 
     }
+    public static void addSize(){
+        size++;
+    }
     public String getNome() {
         return nome;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static void setNome(String nome) {
+        nome = nome;
     }
     public int getId() {
         return id;
     }
-    public void setId(int id) {
-        this.id = id;
+    public static void setId() {
+       id = size;
     }
     public float getCusto() {
         return custo;
     }
-    public void setCusto(float custo) {
-        this.custo = custo;
+    public static void setCusto(float custo) {
+        custo = custo;
     }
     /*public Date getDataValidade() {
         return dataValidade;

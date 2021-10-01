@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Bebida extends Produto {
     @Override
     public String toString() {
-        return "Bebida: [nome=" + getNome() + ", preco=" + getPreco()";
+        return "Bebida: [nome=" + getNome() + ", preco=" + getPreco();
     }
     private Insumo composicao[];
 
@@ -15,12 +15,6 @@ public class Bebida extends Produto {
         this.setTamnho(tamanho);
     }
     public void fazerBebida() {
-    }
-    public int getMilitros() {
-        return militros;
-    }
-    public void setMilitros(int militros) {
-        this.militros = militros;
     }
     public Insumo[] getComposicao() {
         return composicao;

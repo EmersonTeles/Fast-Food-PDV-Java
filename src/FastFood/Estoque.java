@@ -7,18 +7,17 @@ public class Estoque {
     public String toString() {
         return "Estoque [item=" + item + ", quantidade=" + quantidade + "]";
     }
-    private String nome;
-    private float custo;
+    private static String nome;
+    private static float custo;
     ArrayList<Insumo> item = new ArrayList<Insumo>();
-    ArrayList<Integer> quantidade = new ArrayList<>();
+    ArrayList<Integer> quantidade = new ArrayList<Integer>();
     private Scanner input = new Scanner(System.in);
 
-    public Estoque(Insumo item, int quantidade) {
-        super();
-        this.item.add(item);
-        this.quantidade.add(quantidade);
-    }
-    public void cadastrar(Insumo item, int quantidade) {
+    public static void cadastrar(Insumo item, int quantidade) {
+        nome= nome;
+        custo= custo;
+        //.add(item);
+        //quantidade.add(quantidade);
     }
     public void editar() {
     }
@@ -30,10 +29,10 @@ public class Estoque {
     public void setItem(ArrayList<Insumo> item) {
         this.item = item;
     }
-    public ArrayList<Integer>  getQuantidade() {
+    public ArrayList<Integer> getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(ArrayList<Integer>  quantidade) {
+    public void setQuantidade(ArrayList<Integer> quantidade) {
         this.quantidade = quantidade;
     }
 
