@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Estoque {
     @Override
     public String toString() {
-        return "Estoque [item=" + item + ", quantidade=" + quantidade + "]";
+        return item;
     }
     private static String nome;
     private static float custo;
