@@ -5,19 +5,20 @@ import java.util.Date;
 public class Caixa {
     private Date dataInicio;
     private Date dataTermino;
-    private int horarioInicio;
-    private int horarioTermino;
     private Venda vendas[];
     private float valorAbertura;
     private float valorFechamento;
-    ArrayList<String> itensVendidos = new ArrayList<String>();
+    private boolean isCaixaOpen;
+    ArrayList<Venda> Vendas = new ArrayList<>();
 
-
-    public void abrirCaixa() {
-
+    public Caixa(){
+        isCaixaOpen = false;
     }
-    public void fecharCaixa() {
-
+    public void toggleIsCaixaOpen(){
+        this.isCaixaOpen = !this.isCaixaOpen;
+    }
+    public boolean getIsCaixaOpen(){
+        return isCaixaOpen;
     }
     public Date getDataInicio() {
         return dataInicio;
@@ -30,18 +31,6 @@ public class Caixa {
     }
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
-    }
-    public int getHorarioInicio() {
-        return horarioInicio;
-    }
-    public void setHorarioInicio(int horarioInicio) {
-        this.horarioInicio = horarioInicio;
-    }
-    public int getHorarioTermino() {
-        return horarioTermino;
-    }
-    public void setHorarioTermino(int horarioTermino) {
-        this.horarioTermino = horarioTermino;
     }
     public Venda[] getVendas() {
         return vendas;
@@ -61,11 +50,11 @@ public class Caixa {
     public void setValorFechamento(float valorFechamento) {
         this.valorFechamento = valorFechamento;
     }
-    public ArrayList<String> getItensVendidos() {
-        return itensVendidos;
+    public ArrayList<Venda> getItensVendidos() {
+        return Vendas;
     }
-    public void setItensVendidos(ArrayList<String> itensVendidos) {
-        this.itensVendidos = itensVendidos;
+    public void setItensVendidos(ArrayList<Venda> vendas) {
+        this.vendas = vendas.toArray(new Venda[0]);
     }
 
 }
