@@ -3,10 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Estoque {
-    @Override
-    public String toString() {
-        return item;
-    }
+
     private static String nome;
     private static float custo;
     ArrayList<Insumo> item = new ArrayList<Insumo>();

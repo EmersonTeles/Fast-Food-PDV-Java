@@ -39,7 +39,6 @@
             button_cadastrar.addActionListener(
                     e -> {
                         Cadastrar();
-
                     }
             );
             button_editar.addActionListener(
@@ -61,13 +60,13 @@
         }
         public void Cadastrar(){
             this.dispose();
-            JFrame cadastrar= new JFrame();
+            JFrame cadastrar = new JFrame();
             JLabel tema = new JLabel("Opções:");
             JLabel cadastro= new JLabel("Cadastrar");
             JLabel custo1= new JLabel("Digite o custo:");
             JButton deletar= new JButton(" Deletar");
             JLabel quan_Itens= new JLabel("Digite a quantidade de Itens:");
-            JButton cadastrarBB= new JButton("Cadastrar produto");
+            JButton cadastrar_btn= new JButton("Cadastrar produto");
             JLabel descricao= new JLabel("Digite o nome do produto que deseja:");
             JTextField cadText= new JTextField(30);
             JTextField custo_Text= new JTextField(8);
@@ -76,7 +75,7 @@
             cadastrar.add(descricao);
             cadastrar.add(custo_Text);
             cadastrar.add(custo1);
-            cadastrar.add(cadastrarBB);
+            cadastrar.add(cadastrar_btn);
             cadastrar.add(voltar);
             cadastrar.add(quan_Itens);
             cadastrar.add(quant_Text);
@@ -86,11 +85,11 @@
             cadastrar.add(cadText);
             cadastrar.setTitle("Cadastro");
             cadastrar.setSize(400,600);
-            cadastrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             cadastrar.setLocationRelativeTo(null);
             cadastrar.setVisible(true);
 
-            cadastrarBB.setBounds(100,270,200,30);
+            cadastrar_btn.setBounds(100,270,200,30);
             cadastro.setBounds(155,5,250,100);
             cadText.setBounds(50, 100,300,20);
             descricao.setBounds(80,30,250,100);
@@ -101,15 +100,15 @@
 
             quan_Itens.setBounds(120,210,300,20);
             quant_Text.setBounds(50,240,300,20);
-            cadastrarBB.setBounds(100,270,200,30);
             String nome= cadText.getText();
-            float custo = Float.parseFloat(custo_Text.getText());
-            int quantidade=(Integer.parseInt(quant_Text.getText()));
 
-            cadastrarBB.addActionListener(
+            String custo_text = custo_Text.getText();
+            String quantidade_text = quant_Text.getText();
+
+            cadastrar_btn.addActionListener(
                     e -> {
-                        Insumo.cadastrar(nome,custo);
-                        Estoque.cadastrar(insumo,quantidade);
+                        Insumo.cadastrar(nome, Float.parseFloat(custo_text));
+                        Estoque.cadastrar(insumo, Integer.parseInt(quantidade_text));
                         JOptionPane.showMessageDialog(null,"Cadastro feito com sucesso");
                     }
             );
@@ -149,7 +148,7 @@
             editar1.add(editText);
             editar1.setTitle("Editar");
             editar1.setSize(400,600);
-            editar1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            editar1.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             editar1.setLocationRelativeTo(null);
             editar1.setVisible(true);
 
@@ -201,7 +200,7 @@
             Deletar.add(Nome_newC);
             Deletar.setTitle("Deletar item Estoque");
             Deletar.setSize(400,600);
-            Deletar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            Deletar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             Deletar.setLocationRelativeTo(null);
             Deletar.setVisible(true);
 
@@ -215,11 +214,4 @@
             view.setVisible(true);
             this.dispose();
         }
-        public void cadastrarEstoque(){
-           // Insumo.cadastrar(nome, id, custo);
-        }
-
-
-
-
     }

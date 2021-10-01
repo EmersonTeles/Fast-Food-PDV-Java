@@ -6,10 +6,10 @@ public class Venda {
     private ArrayList<Produto> itensVendidos;
     private float valorFinal;
     private String formaDePagamento;
-    private int desconto;
+    private float desconto;
     private String Cliente;
     public Venda(){
-        this.desconto = 100;
+        this.desconto = 0;
     }
     public void adicionarProduto(Produto produto) {
 
@@ -44,10 +44,10 @@ public class Venda {
     public void setFormaDePagamento(String formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
-    public int getDesconto() {
+    public float getDesconto() {
         return desconto;
     }
-    public void setDesconto(int desconto) {
+    public void setDesconto(float desconto) {
         this.desconto = desconto;
     }
     public String getCliente() {

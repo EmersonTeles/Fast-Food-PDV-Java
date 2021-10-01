@@ -91,6 +91,7 @@ public class VendaView extends JFrame {
         this.add(adicionar_desconto);
         this.add(num_desconto);
         this.add(label_desconto);
+        num_desconto.setText("0");
         label_desconto.setBounds(50,200,200,30);
         num_desconto.setBounds(50,230,200,30);
         adicionar_desconto.setBounds(260, 230, 150, 30);
@@ -164,7 +165,8 @@ public class VendaView extends JFrame {
         for(int i = 0; i < rows.size(); i ++){
             valorFinal += rows.get(i).preco;
         }
-        valorFinal = valorFinal * (venda.getDesconto()/100);
+        System.out.println(venda.getDesconto()/100);
+        valorFinal = valorFinal - (valorFinal * (venda.getDesconto()/100));
         venda.setvalorFinal(valorFinal);
             label_valor_total.setText("Valor total: R$"+ valorFinal);
     }

@@ -1,4 +1,7 @@
 package FastFood.View;
+import FastFood.Cardapio;
+import FastFood.Hamburguer;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -9,8 +12,9 @@ public class CardapioView extends JFrame {
     JButton button_editar = new JButton("Editar");
     JButton button_deletar = new JButton("Deletar");
     JButton voltar = new JButton("Voltar");
-
+    Cardapio cardapio;
     public CardapioView(View view) {
+        cardapio = new Cardapio();
         add(button_cadastrar);
         add(button_deletar);
         add(button_editar);
@@ -20,7 +24,7 @@ public class CardapioView extends JFrame {
         add(tema);
         setTitle("Estoque");
         setSize(400, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -66,7 +70,7 @@ public class CardapioView extends JFrame {
         cadastrar.add(button_cadastrar);
         cadastrar.setTitle("Cadastro");
         cadastrar.setSize(400, 600);
-        cadastrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cadastrar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         cadastrar.setLocationRelativeTo(null);
         cadastrar.setVisible(true);
         cadastrar.setLayout(null);
@@ -77,7 +81,7 @@ public class CardapioView extends JFrame {
 
         adicionarHamburguer.addActionListener(
                 e -> {
-                    CadastrarCardapio();
+                    CadastrarHamburguer(cadastrar);
                 }
         );
         button_cadastrar.addActionListener(
@@ -87,8 +91,8 @@ public class CardapioView extends JFrame {
         );
     }
 
-    private void CadastrarCardapio() {
-        this.dispose();
+    private void CadastrarHamburguer(JFrame cadastrar) {
+        cadastrar.dispose();
         JFrame j = new JFrame();
         JLabel descricao_hamburguer = new JLabel("Cadastrar Hamburguer");
         JLabel nome_Hamburguer = new JLabel("Digite o nome da Hamburguer:");
@@ -103,6 +107,7 @@ public class CardapioView extends JFrame {
         JLabel hamburguer_Insumo = new JLabel("Escolha o Insumo e confirme");
         JButton button_Insumo = new JButton("Confirme o Insumo");
         JComboBox<String> dropInsumo = new JComboBox<String>();
+        JButton voltar_cadastro_hamburguer = new JButton("Voltar");
 
         j.add(descricao_hamburguer);
         j.add(nome_Hamburguer);
@@ -111,7 +116,7 @@ public class CardapioView extends JFrame {
         tamanhoHam.addItem("Grande");
         j.add(nome_Hamburguer_Text);
         j.add(nome_Preço);
-        j.add(voltar);
+        j.add(voltar_cadastro_hamburguer);
         j.add(nome_Preço_Text);
         j.add(pesoHamb);
         j.add(hamburguer_Insumo);
@@ -122,7 +127,7 @@ public class CardapioView extends JFrame {
         j.setLayout(null);
         j.setTitle("Cadastrar Hamburguer");
         j.setSize(400, 600);
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        j.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         j.setLocationRelativeTo(null);
         j.setVisible(true);
 
@@ -137,7 +142,11 @@ public class CardapioView extends JFrame {
         dropInsumo.setBounds(110, 200, 180, 20);
         hamburguer_Insumo.setBounds(110, 170, 180, 30);
         button_Insumo.setBounds(80, 229, 250, 20);
-        voltar.setBounds(80, 415, 250, 24);
+        voltar_cadastro_hamburguer.setBounds(80, 415, 250, 24);
+        voltar_cadastro_hamburguer.addActionListener( e -> {
+            j.dispose();
+            this.setVisible(true);
+        });
     }
 
     private void editar() {
@@ -152,7 +161,7 @@ public class CardapioView extends JFrame {
         Edit.add(button_editar);
         Edit.setTitle("Editar");
         Edit.setSize(400, 600);
-        Edit.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Edit.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Edit.setLocationRelativeTo(null);
         Edit.setVisible(true);
         Edit.setLayout(null);
@@ -163,17 +172,17 @@ public class CardapioView extends JFrame {
 
         editarHamburguer.addActionListener(
                 e->{
-                    EditarCardapio();
+                    EditarHamburguer();
                 }
         );
         button_editar.addActionListener(
                 e->{
-                    editBebida();
+                    EditarBebida();
                 }
         );
     }
 
-    private void EditarCardapio(){
+    private void EditarHamburguer(){
         JFrame f = new JFrame();
         JLabel nome_Descricao = new JLabel("Selecione o Hamburguer");
         JComboBox<String> dropDescricao= new JComboBox<String>();
@@ -209,7 +218,7 @@ public class CardapioView extends JFrame {
         f.setLayout(null);
         f.setTitle("Editar Hamburguer");
         f.setSize(400, 600);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         f.setLocationRelativeTo(null);
         f.setVisible(true);
 
@@ -241,9 +250,11 @@ public class CardapioView extends JFrame {
         JComboBox<String> Nome_newC = new JComboBox<String>();
         JComboBox<String> combo2 = new JComboBox<String>();
         JComboBox<String> quant_new2C = new JComboBox<String>();
-        Deletar.add(combo2);
+
         combo2.addItem("Brasil");
         combo2.addItem("Argentina");
+
+        Deletar.add(combo2);
         Deletar.add(button_atualizar2);
         Deletar.add(voltar);
         Deletar.add(button_Custo2);
@@ -258,7 +269,7 @@ public class CardapioView extends JFrame {
         Deletar.add(Nome_newC);
         Deletar.setTitle("Deletar item Estoque");
         Deletar.setSize(400, 600);
-        Deletar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Deletar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Deletar.setLocationRelativeTo(null);
         Deletar.setVisible(true);
 
@@ -281,10 +292,10 @@ public class CardapioView extends JFrame {
         JButton buttonBebida_Insumo= new JButton("Confirme o Insumo");
         JComboBox<String> dropBebidaInsumo= new JComboBox<String>();
         JButton bNomeBebida= new JButton("Fazer Bebida");
-        JButton voltar= new JButton("Voltar");
+        JButton voltar_bebida_btn = new JButton("Voltar");
 
         Bebida.add(descricao_bebida);
-        Bebida.add(voltar);
+        Bebida.add(voltar_bebida_btn);
         tamanhoBebida.addItem("Pequeno");
         tamanhoBebida.addItem("Médio");
         tamanhoBebida.addItem("Grande");
@@ -301,7 +312,7 @@ public class CardapioView extends JFrame {
         Bebida.setLayout(null);
         Bebida.setTitle("Fazer Bebida");
         Bebida.setSize(400,600);
-        Bebida.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Bebida.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Bebida.setLocationRelativeTo(null);
         Bebida.setVisible(true);
 
@@ -316,9 +327,14 @@ public class CardapioView extends JFrame {
         dropBebidaInsumo.setBounds(110,200,180,20);
         bebida_Insumo.setBounds(110,170,180,30);
         buttonBebida_Insumo.setBounds(80,229,250,20);
-        voltar.setBounds(110,405,160,30);
+        voltar_bebida_btn.setBounds(80, 415, 250, 24);
+        voltar_bebida_btn.addActionListener( e -> {
+            Bebida.dispose();
+            this.setVisible(true);
+        });
+
     }
-    private void editBebida(){
+    private void EditarBebida(){
         JFrame dec= new JFrame();
         JLabel nome_DescricaoBebida = new JLabel("Selecione a Bebida");
         JComboBox<String> dropDescricao= new JComboBox<String>();
@@ -355,7 +371,7 @@ public class CardapioView extends JFrame {
         dec.setLayout(null);
         dec.setTitle("Fazer Bebida");
         dec.setSize(400,600);
-        dec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dec.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         dec.setLocationRelativeTo(null);
         dec.setVisible(true);
 

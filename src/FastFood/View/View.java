@@ -111,8 +111,8 @@ public class View extends JFrame{
     }
     
     private void abrirCardapioView(){
-        CardapioView = new VendaView(this);
-        vendaView.setVisible(true);
+        cardapioView = new CardapioView(this);
+        cardapioView.setVisible(true);
         dispose();
     }
 }
