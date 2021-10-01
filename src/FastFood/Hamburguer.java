@@ -5,8 +5,8 @@ public class Hamburguer extends Produto {
 
     @Override
     public String toString() {
-        return "Hamburguer [nome=" + getNome() + ", preco=" + getPreco() +"]";
-    }
+        return getNome();
+   }
     private Insumo composicao[];
     public Hamburguer(String nome, float preco, String tamanho) {
         super();

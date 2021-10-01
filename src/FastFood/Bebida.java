@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Bebida extends Produto {
     @Override
     public String toString() {
-        return "Bebida: [nome=" + getNome() + ", preco=" + getPreco();
+        return getNome();
     }
     private Insumo composicao[];
 

@@ -1,6 +1,9 @@
 package FastFood;
+
+import java.util.ArrayList;
+
 public class Cardapio {
-    private Produto produto;
+    private ArrayList<Produto> produtos = new ArrayList<>();
     private String categoria[];
     public void cadastrar() {
     }
@@ -8,11 +11,8 @@ public class Cardapio {
     }
     public void deletar() {
     }
-    public Produto getProduto() {
-        return produto;
-    }
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public ArrayList<Produto> getProduto() {
+        return produtos;
     }
     public String[] getCategoria() {
         return categoria;
