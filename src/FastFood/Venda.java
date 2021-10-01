@@ -1,38 +1,42 @@
 package FastFood;
 
+import java.util.ArrayList;
+
 public class Venda {
-    private Produto itensVendidos[];
-    private float price;
+    private ArrayList<Produto> itensVendidos;
+    private float valorFinal;
     private String formaDePagamento;
     private int desconto;
     private String Cliente;
-
-    public void adicionarProduto() {
+    public Venda(){
+        this.desconto = 100;
+    }
+    public void adicionarProduto(Produto produto) {
 
     }
     public void retirarProduto() {
 
     }
-    public void adicionarCliente() {
-
+    public void adicionarCliente(String cliente) {
+        setCliente(cliente);
     }
-    public void desconto() {
-
+    public void desconto(int desconto) {
+        setDesconto(desconto);
     }
     public void finalizarVenda() {
 
     }
-    public Produto[] getItensVendidos() {
+    public ArrayList<Produto> getItensVendidos() {
         return itensVendidos;
     }
-    public void setItensVendidos(Produto[] itensVendidos) {
+    public void setItensVendidos(ArrayList<Produto> itensVendidos) {
         this.itensVendidos = itensVendidos;
     }
-    public float getPrice() {
-        return price;
+    public float getvalorFinal() {
+        return valorFinal;
     }
-    public void setPrice(float price) {
-        this.price = price;
+    public void setvalorFinal(float valorFinal) {
+        this.valorFinal = valorFinal;
     }
     public String getFormaDePagamento() {
         return formaDePagamento;
