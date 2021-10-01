@@ -4,8 +4,7 @@ public abstract class Produto {
     private String nome;
     private int id;
     private float preco;
-    private String tipo;
-    //private float taxaDeLucro;
+    private String tamanho;
     public void cadastrar() {
     }
     public void editar() {
@@ -30,10 +29,10 @@ public abstract class Produto {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    public String getTipo() {
-        return tipo;
+    public String getTamanho() {
+        return tamanho;
     }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTamnho(String tamanho) {
+        this.tamanho = tamanho;
     }
 }

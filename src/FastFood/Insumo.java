@@ -1,5 +1,5 @@
 package FastFood;
-import java.util.Date;
+import java.util.Scanner;
 
 public class Insumo {
     @Override
@@ -9,12 +9,15 @@ public class Insumo {
     private String nome;
     private int id;
     private float custo;
-    private Date dataValidade;
+    private Scanner input = new Scanner(System.in);
+
     public Insumo (String nome, float custo) {
-        this.nome = nome;
-        this.custo = custo;
     }
+
     public void cadastrarInsumo() {
+
+
+    public void cadastrar() {
 
     }
     public void editar() {
@@ -41,10 +44,10 @@ public class Insumo {
     public void setCusto(float custo) {
         this.custo = custo;
     }
-    public Date getDataValidade() {
+    /*public Date getDataValidade() {
         return dataValidade;
     }
     public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
-    }
+    }*/
 }
