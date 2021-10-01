@@ -14,7 +14,7 @@ public class Insumo {
         this.nome = nome;
         this.custo = custo;
     }
-    public void cadastrar() {
+    public void cadastrarInsumo() {
 
     }
     public void editar() {
