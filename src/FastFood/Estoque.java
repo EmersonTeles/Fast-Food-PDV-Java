@@ -19,10 +19,6 @@ public class Estoque {
         this.quantidade.add(quantidade);
     }
     public void cadastrar(Insumo item, int quantidade) {
-        System.out.print("Nome do insumo: ");
-        nome = input.next();
-        System.out.print("Custo do insumo: ");
-        custo = input.nextFloat();
     }
     public void editar() {
     }
