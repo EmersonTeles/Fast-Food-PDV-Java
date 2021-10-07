@@ -4,18 +4,15 @@ import java.util.ArrayList;
 
 public class Cardapio {
     private ArrayList<Produto> produtos = new ArrayList<>();
-    private ArrayList<Float> prices;
+    private String categoria[];
     public void cadastrar() {
     }
     public void editar() {
     }
     public void deletar() {
     }
-    public void setPrices(float price){
-        prices.add(price);
-    }
-    public ArrayList<Float> getPricse() {
-        return prices;
+    public ArrayList<Produto> getProduto() {
+        return produtos;
     }
     public void setProduto(Produto produto){
         produtos.add(produto);
@@ -23,6 +20,4 @@ public class Cardapio {
     public ArrayList<Produto> getProduto() {
         return produtos;
     }
-
-
 }
