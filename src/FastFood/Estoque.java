@@ -14,7 +14,7 @@ public class Estoque {
         nome= nome;
         custo= custo;
         //.add(item);
-        //quantidade.add(quantidade);
+       // add(quantidade);
     }
     public void editar() {
     }

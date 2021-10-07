@@ -14,8 +14,10 @@ public class Hamburguer extends Produto {
         this.setPreco(preco);
         this.setTamnho(tamanho);
     }
-    public void FazerHamburguer() {
-
+    public void FazerHamburguer(String nome, float preco, String tamanho) {
+        this.setNome(nome);
+        this.setPreco(preco);
+        this.setTamnho(tamanho);
     }
     public Insumo[] getComposicao() {
         return composicao;

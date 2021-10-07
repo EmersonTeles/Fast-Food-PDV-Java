@@ -1,12 +1,15 @@
     package FastFood.View;
     import FastFood.Estoque;
     import FastFood.Insumo;
+    import FastFood.Produto;
 
     import javax.swing.*;
     import java.awt.*;
     import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
     import java.util.ArrayList;
+
+    import static java.lang.Float.parseFloat;
 
     public class EstoqueView extends JFrame{
         JLabel tema = new JLabel("Opções:");
@@ -100,14 +103,14 @@
 
             quan_Itens.setBounds(120,210,300,20);
             quant_Text.setBounds(50,240,300,20);
-            String nome= cadText.getText();
 
-            String custo_text = custo_Text.getText();
+            String nome= cadText.getText();
+            String custo_text =(custo_Text.getText());
             String quantidade_text = quant_Text.getText();
 
             cadastrar_btn.addActionListener(
                     e -> {
-                        Insumo.cadastrar(nome, Float.parseFloat(custo_text));
+                        Insumo.cadastrar(nome, parseFloat(custo_text));
                         Estoque.cadastrar(insumo, Integer.parseInt(quantidade_text));
                         JOptionPane.showMessageDialog(null,"Cadastro feito com sucesso");
                     }
@@ -128,11 +131,12 @@
             JTextField editText= new JTextField(30);
             JTextField custo_new= new JTextField(8);
             JTextField quant_new= new JTextField(30);
-            JComboBox<String> combo = new JComboBox<String>();
+            JComboBox<Produto> combo = new JComboBox<>();
+
 
             editar1.add(combo);
-            combo.addItem("Brasil");
-            combo.addItem("Argentina");
+            //combo.addItem("Brasil");
+            //combo.addItem("Argentina");
             editar1.add(button_atualizar);
             editar1.add(descricao);
             editar1.add(voltar);
@@ -168,36 +172,56 @@
             desc_New.setBounds(75,20,250,100);
             combo.setBounds(115,90,150,20);
             voltar.setBounds(94,480,200,50);
+
+            button_atualizar.addActionListener(
+                    e->{
+                        int select;
+                        select= combo.getSelectedIndex();
+                        combo.setSelectedItem(Produto.getNome());
+                        insumo.setNome(editText.getText());
+                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                    }
+            );
+            button_Custo.addActionListener(
+                    e->{
+                        int select;
+                        select= combo.getSelectedIndex();
+                        combo.setSelectedItem(Produto.getPreco());
+                        insumo.setCusto(parseFloat(custo_new.getText()));
+                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                    }
+            );
+            button_item.addActionListener(
+                    e->{
+                        int select;
+                        select= combo.getSelectedIndex();
+                        //combo.setSelectedItem();
+                        //insumo.setNome(editText.getText());
+                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                    }
+            );
+
+
+
         }
 
         public void deletar(){
             JFrame Deletar= new JFrame();
-            JLabel editar2= new JLabel("Deletar Nome");
-            JLabel custo2= new JLabel("Deletar Custo:");
-            JLabel item2= new JLabel("Deletar Item");
+
             JButton button_atualizar2= new JButton("Deletar");
-            JButton button_Custo2= new JButton("Deletar Custo");
-            JButton button_item2= new JButton("Deletar Item");
             JLabel desc_New2 = new JLabel("Escolha abaixo o Produto que deseja:");
-            JComboBox<String> ComboItem = new JComboBox<String>();
-            JComboBox<String> Nome_newC = new JComboBox<String>();
             JComboBox<String> combo2 = new JComboBox<String>();
-            JComboBox<String> quant_new2C = new JComboBox<String>();
+
             Deletar.add(combo2);
             combo2.addItem("Brasil");
             combo2.addItem("Argentina");
+            combo2.addItem("Brasil");
+            combo2.addItem("Brasil");
+            combo2.addItem("Brasil");
             Deletar.add(button_atualizar2);
             Deletar.add(voltar);
-            Deletar.add(button_Custo2);
             Deletar.add(desc_New2);
-            Deletar.add(button_item2);
-            Deletar.add(custo2);
-            Deletar.add(item2);
-            Deletar.add(quant_new2C);
             Deletar.setLayout(null);
-            Deletar.add(editar2);
-            Deletar.add(ComboItem);
-            Deletar.add(Nome_newC);
             Deletar.setTitle("Deletar item Estoque");
             Deletar.setSize(400,600);
             Deletar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -209,6 +233,15 @@
             combo2.setBounds(115,90,150,20);
             voltar.setBounds(98,340,200,50);
 
+            button_atualizar2.addActionListener(
+                    e ->{
+                        int selectIndex;
+                        selectIndex = combo2.getSelectedIndex();
+                        //combo2.getSelectedIndex(Produto.getNome());
+                        combo2.removeItemAt(selectIndex);
+                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                    }
+            );
         }
         public void Voltar(View view){
             view.setVisible(true);

@@ -13,6 +13,7 @@ public class CardapioView extends JFrame {
     JButton button_deletar = new JButton("Deletar");
     JButton voltar = new JButton("Voltar");
     Cardapio cardapio;
+    Hamburguer hamburguer;
     public CardapioView(View view) {
         cardapio = new Cardapio();
         add(button_cadastrar);
@@ -95,34 +96,30 @@ public class CardapioView extends JFrame {
         cadastrar.dispose();
         JFrame j = new JFrame();
         JLabel descricao_hamburguer = new JLabel("Cadastrar Hamburguer");
-        JLabel nome_Hamburguer = new JLabel("Digite o nome da Hamburguer:");
+        JLabel nome_Hamburguer = new JLabel("Digite o nome do Hamburguer:");
         JTextField nome_Hamburguer_Text = new JTextField(30);
-        JLabel nome_tipo = new JLabel("Digite o tipo da Hamburguer:");
-        JTextField nome_tipo_Text = new JTextField(30);
-        JLabel nome_Preço = new JLabel("Digite o preço da Hamburguer:");
+        JLabel nome_Preço = new JLabel("Digite o preço do Hamburguer:");
         JTextField nome_Preço_Text = new JTextField(30);
-        JLabel pesoHamb = new JLabel("Digite o tamanho da Hamburguer:");
-        JComboBox<String> tamanhoHam = new JComboBox<String>();
+        JLabel pesoHamb = new JLabel("Digite o tamanho do Hamburguer:");
+        JComboBox<String> dropTamanhoHam = new JComboBox<String>();
         JButton bNomeHamb = new JButton("Cadastrar Hamburguer");
-        JLabel hamburguer_Insumo = new JLabel("Escolha o Insumo e confirme");
-        JButton button_Insumo = new JButton("Confirme o Insumo");
+        JLabel hamburguer_Insumo = new JLabel("Escolha o Insumo");
         JComboBox<String> dropInsumo = new JComboBox<String>();
         JButton voltar_cadastro_hamburguer = new JButton("Voltar");
 
         j.add(descricao_hamburguer);
         j.add(nome_Hamburguer);
-        tamanhoHam.addItem("Pequeno");
-        tamanhoHam.addItem("Médio");
-        tamanhoHam.addItem("Grande");
+        dropTamanhoHam.addItem("Pequeno");
+        dropTamanhoHam.addItem("Médio");
+        dropTamanhoHam.addItem("Grande");
         j.add(nome_Hamburguer_Text);
         j.add(nome_Preço);
         j.add(voltar_cadastro_hamburguer);
         j.add(nome_Preço_Text);
         j.add(pesoHamb);
         j.add(hamburguer_Insumo);
-        j.add(button_Insumo);
         j.add(dropInsumo);
-        j.add(tamanhoHam);
+        j.add(dropTamanhoHam);
         j.add(bNomeHamb);
         j.setLayout(null);
         j.setTitle("Cadastrar Hamburguer");
@@ -131,22 +128,37 @@ public class CardapioView extends JFrame {
         j.setLocationRelativeTo(null);
         j.setVisible(true);
 
-        descricao_hamburguer.setBounds(150, 90, 140, 30);
+        descricao_hamburguer.setBounds(140, 90, 140, 30);
         nome_Hamburguer.setBounds(110, 115, 180, 30);
         nome_Hamburguer_Text.setBounds(80, 150, 250, 20);
         nome_Preço.setBounds(110, 250, 200, 30);
         nome_Preço_Text.setBounds(80, 280, 250, 20);
         pesoHamb.setBounds(110, 300, 200, 30);
-        tamanhoHam.setBounds(80, 330, 250, 20);
+        dropTamanhoHam.setBounds(80, 330, 250, 20);
         bNomeHamb.setBounds(110, 360, 200, 30);
-        dropInsumo.setBounds(110, 200, 180, 20);
-        hamburguer_Insumo.setBounds(110, 170, 180, 30);
-        button_Insumo.setBounds(80, 229, 250, 20);
+        dropInsumo.setBounds(110, 215, 180, 20);
+        hamburguer_Insumo.setBounds(140, 180, 180, 30);
         voltar_cadastro_hamburguer.setBounds(80, 415, 250, 24);
+
+        String nomeHamburguer=nome_Hamburguer_Text.getText();
+        String preçoHamburguer=nome_Preço_Text.getText();
         voltar_cadastro_hamburguer.addActionListener( e -> {
             j.dispose();
             this.setVisible(true);
         });
+
+        bNomeHamb.addActionListener(
+                e->{
+                    int selectIndex;
+                    selectIndex = dropInsumo.getSelectedIndex();
+                    dropInsumo.getSelectedIndex();
+                    String tamanhoHamburguer = String.valueOf(dropTamanhoHam.getSelectedItem());
+                    hamburguer.FazerHamburguer(nomeHamburguer,Float.parseFloat(preçoHamburguer),tamanhoHamburguer);
+                    JOptionPane.showMessageDialog(null,"Cadastro feita com sucesso");
+                }
+        );
+
+
     }
 
     private void editar() {
