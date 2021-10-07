@@ -3,29 +3,32 @@ package FastFood;
 import java.util.ArrayList;
 
 public class Venda {
-    private ArrayList<Produto> itensVendidos;
+    private ArrayList<Produto> itensVendidos = new ArrayList<>();
     private float valorFinal;
     private String formaDePagamento;
-    private int desconto;
+    private float desconto;
     private String Cliente;
+
     public Venda(){
-        this.desconto = 100;
+        this.desconto = 0;
     }
+
+
     public void adicionarProduto(Produto produto) {
-
+        this.itensVendidos.add(produto);
     }
-    public void retirarProduto() {
-
+    public void retirarProduto(int index) {
+        this.itensVendidos.remove(index);
     }
     public void adicionarCliente(String cliente) {
         setCliente(cliente);
     }
-    public void desconto(int desconto) {
+    public void desconto(float desconto) {
         setDesconto(desconto);
     }
     public void finalizarVenda() {
-
     }
+
     public ArrayList<Produto> getItensVendidos() {
         return itensVendidos;
     }
@@ -44,10 +47,10 @@ public class Venda {
     public void setFormaDePagamento(String formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
-    public int getDesconto() {
+    public float getDesconto() {
         return desconto;
     }
-    public void setDesconto(int desconto) {
+    public void setDesconto(float desconto) {
         this.desconto = desconto;
     }
     public String getCliente() {

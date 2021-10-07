@@ -14,8 +14,8 @@ public class VendaView extends JFrame {
     JLabel label_desconto = new JLabel("Digite o desconto que deseja: ");
     JLabel label_retirar_produto = new JLabel("Escolha o produto para retirar: ");
     JLabel label_cliente_final = new JLabel("Cliente: ");
-    JLabel label_desconto_final = new JLabel("Desconto: ");
-    JLabel label_valor_total = new JLabel("Valor total: ");
+    JLabel label_desconto_final = new JLabel("Desconto: 0%");
+    JLabel label_valor_total = new JLabel("Valor total: R$0,0");
     JButton adicionar_produto = new JButton("Adicionar produto");
     JButton retirar_produto = new JButton("Retirar produto");
     JButton adicionar_cliente = new JButton("Adicionar cliente");
@@ -24,24 +24,17 @@ public class VendaView extends JFrame {
     JButton voltar = new JButton("Voltar");
     JTextField nome_cliente = new JTextField(30);
     JTextField num_desconto = new JTextField(10);
-    Venda venda;
     JTable table_produtos;
-    String[] titulos_table = {"Produto", "Qunatidade", "Preço"};
-    String[][] dados = {};
     ArrayList<Item> rows = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel();
-    public VendaView( View view){
-        venda = new Venda();
+    public VendaView(Venda venda, View view){
         table_produtos = new JTable();
         lista_produtos.add(new Hamburguer("Xtudo", 10,"Grande"));
         lista_produtos.add(new Bebida("Coca", 5, "Pequeno"));
         lista_produtos.add(new Bebida("Fanta", 4, "Pequeno"));
-        for(int i = 0; i <lista_produtos.size(); i ++){
-            dropdown_produto.addItem(lista_produtos.get(i).getNome());
+        for (Produto lista_produto : lista_produtos) {
+            dropdown_produto.addItem(lista_produto.getNome());
         }
-
-
-
         this.setLayout(null);
         this.setTitle("Vendas");
         this.setSize(1000,440);
@@ -91,6 +84,7 @@ public class VendaView extends JFrame {
         this.add(adicionar_desconto);
         this.add(num_desconto);
         this.add(label_desconto);
+        num_desconto.setText("0");
         label_desconto.setBounds(50,200,200,30);
         num_desconto.setBounds(50,230,200,30);
         adicionar_desconto.setBounds(260, 230, 150, 30);
@@ -112,81 +106,79 @@ public class VendaView extends JFrame {
         voltar.setBounds(50, 310,200,30);
 
         adicionar_produto.addActionListener(
-            e -> {
-                AdicionarProduto();
-            }
+            e -> adicionarProduto(venda)
         );
         adicionar_cliente.addActionListener(
-            e -> {
-                AdicionarCliente();
-            }
+            e -> adicionarCliente(venda)
         );
         adicionar_desconto.addActionListener(
-            e->{
-                AdicionarDesconto();
-            }
+            e-> adicionarDesconto(venda)
         );
         retirar_produto.addActionListener(
-            e -> {
-                RetirarProduto();
-            }
+            e -> retirarProduto(venda)
         );
         finalizar_pedido.addActionListener(
-            e -> {
-                FinalizarPedido();
-            }
+            e -> finalizarVenda(venda, view)
         );
         voltar.addActionListener(
-                e -> {
-                    Voltar(view);
-                }
+            e -> Voltar(view)
         );
     }
-    private void AdicionarProduto() {
+    private void adicionarProduto(Venda venda) {
         int index = dropdown_produto.getSelectedIndex();
         dropdown_produtos_adicionados.addItem(lista_produtos.get(index));
 
-        Item item = new Item(lista_produtos.get(index), "1", lista_produtos.get(index).getPreco());
+        Item item = new Item(lista_produtos.get(index).getNome(), "1", lista_produtos.get(index).getPreco());
         rows.add(item);
         model.setRowCount(0);
-        for (int i = 0; i < rows.size(); i++) {
+        for (Item row : rows) {
             Object[] fila = {
-                    rows.get(i).nome,
-                    rows.get(i).quantidade,
-                    rows.get(i).preco
+                    row.nome,
+                    row.quantidade,
+                    row.preco
             };
             model.addRow(fila);
         }
-        ValorFinal();
+        venda.adicionarProduto(lista_produtos.get(index));
+        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
     }
-    private void ValorFinal(){
-        float valorFinal = 0;
-        for(int i = 0; i < rows.size(); i ++){
-            valorFinal += rows.get(i).preco;
-        }
-        valorFinal = valorFinal * (venda.getDesconto()/100);
-        venda.setvalorFinal(valorFinal);
-            label_valor_total.setText("Valor total: R$"+ valorFinal);
-    }
-    private void RetirarProduto(){
+
+    private void retirarProduto(Venda venda){
         int index = dropdown_produtos_adicionados.getSelectedIndex();
         dropdown_produtos_adicionados.removeItemAt(index);
         rows.remove(index);
         model.removeRow(index);
-        ValorFinal();
+        venda.retirarProduto(index);
+        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
     }
-    private void AdicionarCliente(){
+    private void adicionarCliente(Venda venda){
         venda.adicionarCliente(nome_cliente.getText());
         label_cliente_final.setText("Cliente: " + venda.getCliente());
     }
 
-    private void AdicionarDesconto(){
-        venda.desconto(Integer.parseInt(num_desconto.getText()));
+    private void adicionarDesconto(Venda venda){
+        venda.desconto(Float.parseFloat(num_desconto.getText()));
         label_desconto_final.setText("Desconto: " + venda.getDesconto() + "%");
-        ValorFinal();
+        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
     }
-    private void FinalizarPedido(){
+    private void finalizarVenda(Venda venda, View view){
+        Object[] options = { "Não", "Sim" };
+        int opcao = JOptionPane.showOptionDialog(null, "Deseja finalizar a venda no valor de R$" + venda.getvalorFinal() + "?", "Finalizar Venda", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
+        if( opcao == 1){
+            view.caixaView.caixa.setVendas(venda);
+            view.caixaView.caixa.setValorFechamento(venda.getvalorFinal());
+            Voltar(view);
+        }
+    }
+    private float ValorFinal(Venda venda){
+        float valorFinal = 0;
+        for (Item row : rows) {
+            valorFinal += row.preco;
+        }
+        valorFinal = valorFinal - (valorFinal * (venda.getDesconto()/100));
+        venda.setvalorFinal(valorFinal);
+        return valorFinal;
     }
     private void Voltar(View view){
         view.setVisible(true);
@@ -197,10 +189,10 @@ public class VendaView extends JFrame {
 }
 
 class Item{
-    Produto nome;
+    String nome;
     String quantidade;
     float preco;
-    public Item( Produto nome, String quantidade, float preco){
+    public Item( String nome, String quantidade, float preco){
         this.nome = nome;
         this.quantidade = quantidade;
         this.preco = preco;

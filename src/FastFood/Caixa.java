@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Caixa {
     private Date dataInicio;
+
     private Date dataTermino;
-    private Venda vendas[];
     private float valorAbertura;
     private float valorFechamento;
     private boolean isCaixaOpen;
-    ArrayList<Venda> Vendas = new ArrayList<>();
+    ArrayList<Venda> vendas = new ArrayList<>();
 
     public Caixa(){
         isCaixaOpen = false;
@@ -32,12 +32,6 @@ public class Caixa {
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
-    public Venda[] getVendas() {
-        return vendas;
-    }
-    public void setVendas(Venda[] vendas) {
-        this.vendas = vendas;
-    }
     public float getValorAbertura() {
         return valorAbertura;
     }
@@ -45,16 +39,16 @@ public class Caixa {
         this.valorAbertura = valorAbertura;
     }
     public float getValorFechamento() {
+        this.valorFechamento += valorAbertura;
         return valorFechamento;
     }
-    public void setValorFechamento(float valorFechamento) {
-        this.valorFechamento = valorFechamento;
+    public void setValorFechamento(float valor) {
+        this.valorFechamento += valor;
     }
-    public ArrayList<Venda> getItensVendidos() {
-        return Vendas;
+    public ArrayList<Venda> getVendas() {
+        return vendas;
     }
-    public void setItensVendidos(ArrayList<Venda> vendas) {
-        this.vendas = vendas.toArray(new Venda[0]);
+    public void setVendas(Venda venda) {
+        this.vendas.add(venda);
     }
-
 }
