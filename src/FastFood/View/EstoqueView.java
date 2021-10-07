@@ -19,6 +19,7 @@
         JButton voltar= new JButton("Voltar");
         Estoque estoque= new Estoque();
         Insumo insumo;
+        Produto produto;
 
         public EstoqueView(View view){
            add(button_cadastrar);
@@ -110,7 +111,7 @@
 
             cadastrar_btn.addActionListener(
                     e -> {
-                        Insumo.cadastrar(nome, parseFloat(custo_text));
+                        insumo.cadastrar(nome, parseFloat(custo_text));
                         Estoque.cadastrar(insumo, Integer.parseInt(quantidade_text));
                         JOptionPane.showMessageDialog(null,"Cadastro feito com sucesso");
                     }
@@ -177,7 +178,7 @@
                     e->{
                         int select;
                         select= combo.getSelectedIndex();
-                        combo.setSelectedItem(Produto.getNome());
+                        combo.setSelectedItem(produto.getNome());
                         insumo.setNome(editText.getText());
                         JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
                     }
@@ -186,7 +187,7 @@
                     e->{
                         int select;
                         select= combo.getSelectedIndex();
-                        combo.setSelectedItem(Produto.getPreco());
+                        combo.setSelectedItem(produto.getPreco());
                         insumo.setCusto(parseFloat(custo_new.getText()));
                         JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
                     }
@@ -237,7 +238,7 @@
                     e ->{
                         int selectIndex;
                         selectIndex = combo2.getSelectedIndex();
-                        //combo2.getSelectedIndex(Produto.getNome());
+                        //combo2.getSelectedIndex(produto.getNome());
                         combo2.removeItemAt(selectIndex);
                         JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
                     }

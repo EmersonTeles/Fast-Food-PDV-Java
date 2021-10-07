@@ -17,7 +17,5 @@ public class Cardapio {
     public void setProduto(Produto produto){
         produtos.add(produto);
     }
-    public ArrayList<Produto> getProduto() {
-        return produtos;
-    }
+  
 }
