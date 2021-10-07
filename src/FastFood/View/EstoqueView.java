@@ -1,26 +1,17 @@
     package FastFood.View;
-    import FastFood.Estoque;
-    import FastFood.Insumo;
-    import FastFood.Produto;
-
+    import FastFood.*;
     import javax.swing.*;
-    import java.awt.*;
-    import java.awt.event.ActionEvent;
-    import java.awt.event.ActionListener;
-    import java.util.ArrayList;
-
-    import static java.lang.Float.parseFloat;
 
     public class EstoqueView extends JFrame{
         JLabel tema = new JLabel("Opções:");
-        JButton button_cadastrar= new JButton("Cadastrar");
-        JButton button_editar= new JButton("Editar");
-        JButton button_deletar= new JButton("Deletar");
-        JButton voltar= new JButton("Voltar");
-        Estoque estoque= new Estoque();
+        JButton button_cadastrar = new JButton("Cadastrar");
+        JButton button_editar = new JButton("Editar");
+        JButton button_deletar = new JButton("Deletar");
+        JButton voltar = new JButton("Voltar");
+
         Insumo insumo;
 
-        public EstoqueView(View view){
+        public EstoqueView(Estoque estoque, View view){
            add(button_cadastrar);
            add(button_deletar);
            add(button_editar);
@@ -41,17 +32,20 @@
 
             button_cadastrar.addActionListener(
                     e -> {
-                        Cadastrar();
+                        this.dispose();
+                        Cadastrar(estoque);
                     }
             );
             button_editar.addActionListener(
                     e -> {
-                        editar();
+                        this.dispose();
+                        editar(estoque);
                     }
             );
             button_deletar.addActionListener(
                     e -> {
-                       deletar();
+                        this.dispose();
+                       deletar(estoque);
                     }
             );
             voltar.addActionListener(
@@ -61,186 +55,202 @@
             );
 
         }
-        public void Cadastrar(){
-            this.dispose();
-            JFrame cadastrar = new JFrame();
+        public void Cadastrar(Estoque estoque){
+            JFrame JFcadastrar = new JFrame();
             JLabel tema = new JLabel("Opções:");
-            JLabel cadastro= new JLabel("Cadastrar");
-            JLabel custo1= new JLabel("Digite o custo:");
-            JButton deletar= new JButton(" Deletar");
-            JLabel quan_Itens= new JLabel("Digite a quantidade de Itens:");
-            JButton cadastrar_btn= new JButton("Cadastrar produto");
-            JLabel descricao= new JLabel("Digite o nome do produto que deseja:");
-            JTextField cadText= new JTextField(30);
-            JTextField custo_Text= new JTextField(8);
-            JTextField quant_Text= new JTextField(30);
+            JLabel cadastro = new JLabel("Cadastrar");
+            JLabel custo1 = new JLabel("Digite o custo:");
+            JButton deletar = new JButton(" Deletar");
+            JButton voltar_cadastro = new JButton("Voltar");
+            JLabel quan_Itens = new JLabel("Digite a quantidade de insumos:");
+            JButton cadastrar_btn = new JButton("Cadastrar insumo");
+            JLabel descricao = new JLabel("Digite o nome do insumo que deseja:");
+            JTextField nome_input = new JTextField(30);
+            JTextField custo_input = new JTextField(8);
+            JTextField quantidade_input = new JTextField(30);
 
-            cadastrar.add(descricao);
-            cadastrar.add(custo_Text);
-            cadastrar.add(custo1);
-            cadastrar.add(cadastrar_btn);
-            cadastrar.add(voltar);
-            cadastrar.add(quan_Itens);
-            cadastrar.add(quant_Text);
-            cadastrar.setLayout(null);
-            cadastrar.add(tema);
-            cadastrar.add(cadastro);
-            cadastrar.add(cadText);
-            cadastrar.setTitle("Cadastro");
-            cadastrar.setSize(400,600);
+            JFcadastrar.add(descricao);
+            JFcadastrar.add(custo_input);
+            JFcadastrar.add(custo1);
+            JFcadastrar.add(cadastrar_btn);
+            JFcadastrar.add(voltar_cadastro);
+            JFcadastrar.add(quan_Itens);
+            JFcadastrar.add(quantidade_input);
+            JFcadastrar.setLayout(null);
+            JFcadastrar.add(tema);
+            JFcadastrar.add(cadastro);
+            JFcadastrar.add(nome_input);
+            JFcadastrar.setTitle("Cadastro");
+            JFcadastrar.setSize(400,600);
             setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            cadastrar.setLocationRelativeTo(null);
-            cadastrar.setVisible(true);
+            JFcadastrar.setLocationRelativeTo(null);
+            JFcadastrar.setVisible(true);
 
             cadastrar_btn.setBounds(100,270,200,30);
             cadastro.setBounds(155,5,250,100);
-            cadText.setBounds(50, 100,300,20);
+            nome_input.setBounds(50, 100,300,20);
             descricao.setBounds(80,30,250,100);
 
-            voltar.setBounds(98,340,200,50);
+            voltar_cadastro.setBounds(98,340,200,50);
             custo1.setBounds(150,95,250,100);
-            custo_Text.setBounds(50, 170,300,20);
+            custo_input.setBounds(50, 170,300,20);
 
             quan_Itens.setBounds(120,210,300,20);
-            quant_Text.setBounds(50,240,300,20);
-
-            String nome= cadText.getText();
-            String custo_text =(custo_Text.getText());
-            String quantidade_text = quant_Text.getText();
+            quantidade_input.setBounds(50,240,300,20);
 
             cadastrar_btn.addActionListener(
-                    e -> {
-                        Insumo.cadastrar(nome, parseFloat(custo_text));
-                        Estoque.cadastrar(insumo, Integer.parseInt(quantidade_text));
-                        JOptionPane.showMessageDialog(null,"Cadastro feito com sucesso");
-                    }
+                e -> {
+                    String nome = nome_input.getText();
+                    float custo = Float.parseFloat(custo_input.getText());
+                    int quantidade = Integer.parseInt(quantidade_input.getText());
+                    insumo = new Insumo(nome, custo);
+                    estoque.cadastrar(insumo, quantidade);
+                    JOptionPane.showMessageDialog(null,"Cadastro feito com sucesso");
+                    nome_input.setText("");
+                    custo_input.setText("");
+                    quantidade_input.setText("");
+                }
+            );
+            voltar_cadastro.addActionListener(
+                e -> {
+                    JFcadastrar.dispose();
+                    this.setVisible(true);
+                }
             );
         }
 
-        public void editar(){
-            this.dispose();
-            JFrame editar1 = new JFrame();
+        public void editar(Estoque estoque){
+            JFrame JFeditar = new JFrame();
             JLabel editarTela= new JLabel("Editar");
             JLabel custo= new JLabel("Digite o novo custo:");
             JLabel quan_Itens= new JLabel("Digite a nova quantia de Itens:");
-            JButton button_atualizar= new JButton("Atualizar");
-            JButton button_Custo= new JButton("Atualizar Custo");
-            JButton button_item= new JButton("Atualizar Item");
-            JLabel descricao= new JLabel("Digite o novo nome do produto que deseja:");
-            JLabel desc_New = new JLabel("Escolha abaixo o Produto que deseja:");
-            JTextField editText= new JTextField(30);
-            JTextField custo_new= new JTextField(8);
-            JTextField quant_new= new JTextField(30);
-            JComboBox<Produto> combo = new JComboBox<>();
+            JButton alterar_nome_btn = new JButton("Atualizar");
+            JButton alterar_custo_btn = new JButton("Atualizar Custo");
+            JButton alterar_quantidade_btn = new JButton("Atualizar Quantidade");
+            JButton voltar_editar = new JButton("Voltar");
+            JLabel descricao= new JLabel("Digite o novo nome do insumo que deseja:");
+            JLabel desc_New = new JLabel("Escolha abaixo o insumo que deseja:");
+            JTextField nome_input = new JTextField(30);
+            JTextField custo_input = new JTextField(8);
+            JTextField quantidade_input = new JTextField(30);
+            JComboBox<Insumo> combo = new JComboBox<>();
 
+            for (int i = 0; i < estoque.getInsumo().size(); i++) {
+                combo.addItem(estoque.getInsumo().get(i));
+            }
 
-            editar1.add(combo);
-            //combo.addItem("Brasil");
-            //combo.addItem("Argentina");
-            editar1.add(button_atualizar);
-            editar1.add(descricao);
-            editar1.add(voltar);
-            editar1.add(button_Custo);
-            editar1.add(desc_New);
-            editar1.add(custo_new);
-            editar1.add(button_item);
-            editar1.add(custo);
-            editar1.add(quan_Itens);
-            editar1.add(quant_new);
-            editar1.setLayout(null);
-            editar1.add(editarTela);
-            editar1.add(editText);
-            editar1.setTitle("Editar");
-            editar1.setSize(400,600);
-            editar1.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            editar1.setLocationRelativeTo(null);
-            editar1.setVisible(true);
+            JFeditar.add(combo);
+            JFeditar.add(alterar_nome_btn);
+            JFeditar.add(descricao);
+            JFeditar.add(voltar_editar);
+            JFeditar.add(alterar_custo_btn);
+            JFeditar.add(desc_New);
+            JFeditar.add(custo_input);
+            JFeditar.add(alterar_quantidade_btn);
+            JFeditar.add(custo);
+            JFeditar.add(quan_Itens);
+            JFeditar.add(quantidade_input);
+            JFeditar.setLayout(null);
+            JFeditar.add(editarTela);
+            JFeditar.add(nome_input);
+            JFeditar.setTitle("Editar");
+            JFeditar.setSize(400,600);
+            JFeditar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+            JFeditar.setLocationRelativeTo(null);
+            JFeditar.setVisible(true);
 
-            button_atualizar.setBounds(140,200,100,30);
+            alterar_nome_btn.setBounds(140,200,100,30);
             editarTela.setBounds(170,80,250,100);
-            editText.setBounds(50, 170,300,20);
+            nome_input.setBounds(50, 170,300,20);
             descricao.setBounds(70,100,250,100);
 
             custo.setBounds(140,200,250,100);
-            custo_new.setBounds(50, 265,300,20);
-            button_Custo.setBounds(115,295,150,30);
+            custo_input.setBounds(50, 265,300,20);
+            alterar_custo_btn.setBounds(115,295,150,30);
 
             quan_Itens.setBounds(100,335,300,20);
-            quant_new.setBounds(50,365,300,20);
-            button_item.setBounds(120,395,150,30);
+            quantidade_input.setBounds(50,365,300,20);
+            alterar_quantidade_btn.setBounds(120,395,150,30);
 
             desc_New.setBounds(75,20,250,100);
             combo.setBounds(115,90,150,20);
-            voltar.setBounds(94,480,200,50);
+            voltar_editar.setBounds(94,480,200,50);
 
-            button_atualizar.addActionListener(
-                    e->{
-                        int select;
-                        select= combo.getSelectedIndex();
-                        combo.setSelectedItem(Produto.getNome());
-                        insumo.setNome(editText.getText());
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+            alterar_nome_btn.addActionListener(
+                e->{
+                    int index = combo.getSelectedIndex();
+                    estoque.getInsumoByIndex(index).setNome(nome_input.getText());
+                    combo.removeAllItems();
+                    for (int i = 0; i < estoque.getInsumo().size(); i++) {
+                        combo.addItem(estoque.getInsumo().get(i));
                     }
+                    JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                }
             );
-            button_Custo.addActionListener(
-                    e->{
-                        int select;
-                        select= combo.getSelectedIndex();
-                        combo.setSelectedItem(Produto.getPreco());
-                        insumo.setCusto(parseFloat(custo_new.getText()));
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
-                    }
+            alterar_custo_btn.addActionListener(
+                e->{
+                    int index = combo.getSelectedIndex();
+                    estoque.getInsumoByIndex(index).setCusto(Float.parseFloat(custo_input.getText()));
+                    JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                }
             );
-            button_item.addActionListener(
-                    e->{
-                        int select;
-                        select= combo.getSelectedIndex();
-                        //combo.setSelectedItem();
-                        //insumo.setNome(editText.getText());
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
-                    }
+            alterar_quantidade_btn.addActionListener(
+                e->{
+                    int index = combo.getSelectedIndex();
+                    estoque.setQuantidade(index, Integer.parseInt(quantidade_input.getText()));
+                    JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                }
             );
-
-
-
+            voltar_editar.addActionListener(
+                e -> {
+                    JFeditar.dispose();
+                    this.setVisible(true);
+                }
+            );
         }
-
-        public void deletar(){
-            JFrame Deletar= new JFrame();
+        public void deletar(Estoque estoque){
+            JFrame JFdeletar= new JFrame();
 
             JButton button_atualizar2= new JButton("Deletar");
             JLabel desc_New2 = new JLabel("Escolha abaixo o Produto que deseja:");
-            JComboBox<String> combo2 = new JComboBox<String>();
+            JComboBox<String> deletar_input = new JComboBox<String>();
+            JButton voltar_delete = new JButton("Voltar");
 
-            Deletar.add(combo2);
-            combo2.addItem("Brasil");
-            combo2.addItem("Argentina");
-            combo2.addItem("Brasil");
-            combo2.addItem("Brasil");
-            combo2.addItem("Brasil");
-            Deletar.add(button_atualizar2);
-            Deletar.add(voltar);
-            Deletar.add(desc_New2);
-            Deletar.setLayout(null);
-            Deletar.setTitle("Deletar item Estoque");
-            Deletar.setSize(400,600);
-            Deletar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-            Deletar.setLocationRelativeTo(null);
-            Deletar.setVisible(true);
+            JFdeletar.add(deletar_input);
+            deletar_input.addItem("Brasil");
+            deletar_input.addItem("Argentina");
+            deletar_input.addItem("Brasil");
+            deletar_input.addItem("Brasil");
+            deletar_input.addItem("Brasil");
+            JFdeletar.add(button_atualizar2);
+            JFdeletar.add(voltar_delete);
+            JFdeletar.add(desc_New2);
+            JFdeletar.setLayout(null);
+            JFdeletar.setTitle("JFdeletar item Estoque");
+            JFdeletar.setSize(400,600);
+            JFdeletar.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+            JFdeletar.setLocationRelativeTo(null);
+            JFdeletar.setVisible(true);
 
             button_atualizar2.setBounds(140,120,100,30);
             desc_New2.setBounds(75,20,250,100);
-            combo2.setBounds(115,90,150,20);
-            voltar.setBounds(98,340,200,50);
+            deletar_input.setBounds(115,90,150,20);
+            voltar_delete.setBounds(98,340,200,50);
 
             button_atualizar2.addActionListener(
-                    e ->{
-                        int selectIndex;
-                        selectIndex = combo2.getSelectedIndex();
-                        //combo2.getSelectedIndex(Produto.getNome());
-                        combo2.removeItemAt(selectIndex);
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
-                    }
+                e -> {
+                    int index;
+                    index = deletar_input.getSelectedIndex();
+                    deletar_input.removeItemAt(index);
+                    estoque.deletar(index);
+                    JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
+                }
+            );
+            voltar_delete.addActionListener(
+                e -> {
+                    JFdeletar.dispose();
+                    this.setVisible(true);
+                }
             );
         }
         public void Voltar(View view){

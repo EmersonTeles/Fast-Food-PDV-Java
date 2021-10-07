@@ -29,12 +29,8 @@ public class VendaView extends JFrame {
     DefaultTableModel model = new DefaultTableModel();
     public VendaView(Venda venda, View view){
         table_produtos = new JTable();
-        lista_produtos.add(new Hamburguer("Xtudo", 10,"Grande"));
-        lista_produtos.add(new Bebida("Coca", 5, "Pequeno"));
-        lista_produtos.add(new Bebida("Fanta", 4, "Pequeno"));
-
-        for (Produto lista_produto : lista_produtos) {
-            dropdown_produto.addItem(lista_produto.getNome());
+        for (int i = 0; i < view.cardapioView.cardapio.getProduto().size(); i++) {
+            dropdown_produto.addItem(view.cardapioView.cardapio.getProduto().get(i).getNome());
         }
         this.setLayout(null);
         this.setTitle("Vendas");

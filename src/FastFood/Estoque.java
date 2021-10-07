@@ -1,35 +1,41 @@
 package FastFood;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Estoque {
-    private static String nome;
-    private static float custo;
-    ArrayList<Insumo> item = new ArrayList<Insumo>();
+    private String nome;
+    private float custo;
+    ArrayList<Insumo> insumo = new ArrayList<Insumo>();
     ArrayList<Integer> quantidade = new ArrayList<Integer>();
-    private Scanner input = new Scanner(System.in);
 
-    public static void cadastrar(Insumo item, int quantidade) {
-        nome = nome;
-        custo = custo;
-        //.add(item);
-       // add(quantidade);
+    public void cadastrar(Insumo item, int quantidade) {
+        setInsumo(item);
+        addQuantidade(quantidade);
     }
-    public void editar() {
+    public void editar(int index, String novo_nome, int novo_custo) {
+        getInsumoByIndex(index).setNome(novo_nome);
+        getInsumoByIndex(index).setCusto(novo_custo);
     }
-    public void deletar() {
+    public void subtrairEstoque(int index, int quantidade_vendidos){
+        this.quantidade.set(index, (this.quantidade.get(index) - quantidade_vendidos));
     }
-    public ArrayList<Insumo> getItem() {
-        return item;
+    public void deletar(int index) {
+        insumo.remove(index);
+        quantidade.remove(index);
     }
-    public void setItem(ArrayList<Insumo> item) {
-        this.item = item;
+    public ArrayList<Insumo> getInsumo(){
+        return insumo;
     }
-    public ArrayList<Integer> getQuantidade() {
-        return quantidade;
+    public Insumo getInsumoByIndex(int index) {
+        return this.insumo.get(index);
     }
-    public void setQuantidade(ArrayList<Integer> quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(int index, int quantidade) {
+        this.quantidade.set(index, quantidade);
+    }
+    public void setInsumo(Insumo item) {
+        this.insumo.add(item);
+    }
+    public void addQuantidade(int quantidade) {
+        this.quantidade.add(quantidade);
     }
 
 }
