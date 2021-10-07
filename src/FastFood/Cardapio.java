@@ -14,12 +14,10 @@ public class Cardapio {
     public ArrayList<Produto> getProduto() {
         return produtos;
     }
-    public String[] getCategoria() {
-        return categoria;
+    public void setProduto(Produto produto){
+        produtos.add(produto);
     }
-    public void setCategoria(String[] categoria) {
-        this.categoria = categoria;
+    public ArrayList<Produto> getProduto() {
+        return produtos;
     }
-
-
 }

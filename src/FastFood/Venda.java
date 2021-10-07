@@ -8,7 +8,6 @@ public class Venda {
     private String formaDePagamento;
     private float desconto;
     private String Cliente;
-
     public Venda(){
         this.desconto = 0;
     }
@@ -28,7 +27,6 @@ public class Venda {
     }
     public void finalizarVenda() {
     }
-
     public ArrayList<Produto> getItensVendidos() {
         return itensVendidos;
     }

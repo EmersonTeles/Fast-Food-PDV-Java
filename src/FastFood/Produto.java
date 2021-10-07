@@ -1,17 +1,21 @@
 package FastFood;
 
 public abstract class Produto {
-    private String nome;
+    public static String nome;
+    private static float preco;
     private int id;
-    private float preco;
     private String tamanho;
-    public void cadastrar() {
+
+    public void cadastrar(String nome, float preco, String tamanho) {
+        this.setNome(nome);
+        this.setPreco(preco);
+        this.setTamnho(tamanho);
     }
     public void editar() {
     }
     public void deletar() {
     }
-    public String getNome() {
+    public static String getNome() {
         return nome;
     }
     public void setNome(String nome) {
@@ -23,7 +27,7 @@ public abstract class Produto {
     private void setId(int id) {
         this.id = id;
     }
-    public float getPreco() {
+    public static float getPreco() {
         return preco;
     }
     public void setPreco(float preco) {

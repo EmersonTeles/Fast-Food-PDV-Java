@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Estoque {
-    @Override
-    public String toString() {
-        return item;
-    }
     private static String nome;
     private static float custo;
     ArrayList<Insumo> item = new ArrayList<Insumo>();
@@ -14,10 +10,10 @@ public class Estoque {
     private Scanner input = new Scanner(System.in);
 
     public static void cadastrar(Insumo item, int quantidade) {
-        nome= nome;
-        custo= custo;
+        nome = nome;
+        custo = custo;
         //.add(item);
-        //quantidade.add(quantidade);
+       // add(quantidade);
     }
     public void editar() {
     }

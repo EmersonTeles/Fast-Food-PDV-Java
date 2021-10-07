@@ -1,6 +1,5 @@
 package FastFood;
 import java.util.Scanner;
-
 public class Insumo {
     private static int size = 0;
     private static int id;
@@ -11,8 +10,6 @@ public class Insumo {
     private float custo;
     private Scanner input = new Scanner(System.in);
 
-    public Insumo (String nome, float custo) {
-    }
     public static Insumo cadastrar(String nome, float custo) {
         setNome(nome);
         setCusto(custo);

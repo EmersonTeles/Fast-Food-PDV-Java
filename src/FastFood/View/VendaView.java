@@ -32,6 +32,7 @@ public class VendaView extends JFrame {
         lista_produtos.add(new Hamburguer("Xtudo", 10,"Grande"));
         lista_produtos.add(new Bebida("Coca", 5, "Pequeno"));
         lista_produtos.add(new Bebida("Fanta", 4, "Pequeno"));
+
         for (Produto lista_produto : lista_produtos) {
             dropdown_produto.addItem(lista_produto.getNome());
         }
@@ -144,6 +145,7 @@ public class VendaView extends JFrame {
     }
 
     private void retirarProduto(Venda venda){
+
         int index = dropdown_produtos_adicionados.getSelectedIndex();
         dropdown_produtos_adicionados.removeItemAt(index);
         rows.remove(index);
