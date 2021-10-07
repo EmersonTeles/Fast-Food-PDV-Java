@@ -1,21 +1,29 @@
 package FastFood;
 
+import java.util.ArrayList;
+
 public abstract class Produto {
-    public static String nome;
-    private static float preco;
+    public String nome;
+    private float preco;
+    private static int size = 0;
     private int id;
     private String tamanho;
+    private ArrayList<Insumo> composicao = new ArrayList<>();
 
-    public void cadastrar(String nome, float preco, String tamanho) {
+    public void cadastrar(String nome, float preco, String tamanho, ArrayList<Insumo> composicao) {
         this.setNome(nome);
         this.setPreco(preco);
         this.setTamnho(tamanho);
+        this.setComposicao(composicao);
+        addSize();
+        setId();
     }
+
     public void editar() {
     }
     public void deletar() {
     }
-    public static String getNome() {
+    public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
@@ -24,10 +32,13 @@ public abstract class Produto {
     private int getId() {
         return id;
     }
-    private void setId(int id) {
-        this.id = id;
+    private static void addSize(){
+        size ++;
     }
-    public static float getPreco() {
+    private void setId() {
+        this.id = size;
+    }
+    public float getPreco() {
         return preco;
     }
     public void setPreco(float preco) {
@@ -38,5 +49,14 @@ public abstract class Produto {
     }
     public void setTamnho(String tamanho) {
         this.tamanho = tamanho;
+    }
+    public ArrayList<Insumo> getComposicao() {
+        return this.composicao;
+    }
+    public void setComposicao(ArrayList<Insumo> composicao) {
+        this.composicao = composicao;
+    }
+    public void addComposicao(Insumo insumo) {
+        this.composicao.add(insumo);
     }
 }
