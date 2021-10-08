@@ -19,7 +19,6 @@ public class View extends JFrame{
     EstoqueView estoqueView;
     CardapioView cardapioView;
     Estoque estoque = new Estoque();
-
     public View (){
         this.setLayout(null);
         this.add(hamburguer_btn);
