@@ -1,21 +1,23 @@
 package FastFood;
-import java.util.Scanner;
+
 public class Insumo {
-    private static int size = 0;
-    private static int id;
     public String toString() {
-        return "nome=" + nome + " Preço do insumo= R$" + custo;
+        return  nome;
     }
+    private static int size = 0;
+    private int id;
     private String nome;
     private float custo;
-    private Scanner input = new Scanner(System.in);
 
-    public static Insumo cadastrar(String nome, float custo) {
+    public Insumo(String nome, float custo){
+
+        cadastrar(nome, custo);
+    }
+    public void cadastrar(String nome, float custo) {
         setNome(nome);
         setCusto(custo);
         addSize();
         setId();
-        return null;
     }
     public void editar() {
 
@@ -23,31 +25,25 @@ public class Insumo {
     public void deletar() {
 
     }
-    public static void addSize(){
-        size++;
+    private static void addSize(){
+        size ++;
     }
     public String getNome() {
-        return nome;
+        return this.nome;
     }
-    public static void setNome(String nome) {
-        nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public int getId() {
-        return id;
+        return this.id;
     }
-    public static void setId() {
-       id = size;
+    private void setId() {
+       this.id = size;
     }
     public float getCusto() {
-        return custo;
+        return this.custo;
     }
-    public static void setCusto(float custo) {
-        custo = custo;
+    public void setCusto(float custo) {
+        this.custo = custo;
     }
-    /*public Date getDataValidade() {
-        return dataValidade;
-    }
-    public void setDataValidade(Date dataValidade) {
-        this.dataValidade = dataValidade;
-    }*/
 }

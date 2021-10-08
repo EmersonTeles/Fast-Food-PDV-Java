@@ -6,7 +6,6 @@ public class Bebida extends Produto {
     public String toString() {
         return getNome();
     }
-    private Insumo composicao[];
 
     public Bebida(String nome, float preco, String tamanho) {
         super();
@@ -15,11 +14,5 @@ public class Bebida extends Produto {
         this.setTamnho(tamanho);
     }
     public void fazerBebida() {
-    }
-    public Insumo[] getComposicao() {
-        return composicao;
-    }
-    public void setComposicao(Insumo[] composicao) {
-        this.composicao = composicao;
     }
 }

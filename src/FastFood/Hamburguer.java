@@ -1,4 +1,5 @@
 package FastFood;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Hamburguer extends Produto {
@@ -7,23 +8,13 @@ public class Hamburguer extends Produto {
     public String toString() {
         return getNome();
    }
-    private Insumo composicao[];
-    public Hamburguer(String nome, float preco, String tamanho) {
-        super();
-        this.setNome(nome);
-        this.setPreco(preco);
-        this.setTamnho(tamanho);
-    }
-    public void FazerHamburguer(String nome, float preco, String tamanho) {
-        this.setNome(nome);
-        this.setPreco(preco);
-        this.setTamnho(tamanho);
-    }
-    public Insumo[] getComposicao() {
-        return composicao;
-    }
-    public void setComposicao(Insumo[] composicao) {
-        this.composicao = composicao;
-    }
 
+    public Hamburguer(String nome, float preco, String tamanho, ArrayList<Insumo> composicao) {
+        super();
+        cadastrar(nome, preco, tamanho, composicao);
+    }
+    public void editar(){
+    }
+    public void fazerHamburguer(int quantidade) {
+    }
 }

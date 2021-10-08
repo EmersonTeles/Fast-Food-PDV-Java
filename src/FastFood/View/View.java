@@ -18,7 +18,7 @@ public class View extends JFrame{
     VendaView vendaView;
     EstoqueView estoqueView;
     CardapioView cardapioView;
-
+    Estoque estoque = new Estoque();
     public View (){
         this.setLayout(null);
         this.add(hamburguer_btn);
@@ -112,14 +112,16 @@ public class View extends JFrame{
     }
     
     private void abrirEstoqueView(){
-        estoqueView = new EstoqueView(this);
+        if(estoqueView == null){
+            estoqueView = new EstoqueView(estoque, this);
+        }
         estoqueView.setVisible(true);
         this.dispose();
     }
     
     private void abrirCardapioView(){
-        cardapioView = new CardapioView(this);
-        vendaView.setVisible(true);
+        cardapioView = new CardapioView(estoque, this);
+        cardapioView.setVisible(true);
         this.dispose();
     }
 }
