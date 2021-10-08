@@ -37,5 +37,4 @@ public class Estoque {
     public void addQuantidade(int quantidade) {
         this.quantidade.add(quantidade);
     }
-
 }

@@ -6,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public class VendaView extends JFrame {
-    ArrayList<Produto> lista_produtos = new ArrayList<>();
     JComboBox<String> dropdown_produto = new JComboBox<>();
     JComboBox<Produto> dropdown_produtos_adicionados = new JComboBox<>();
     JLabel label_produto = new JLabel("Escolha o produto: ");
@@ -27,11 +26,12 @@ public class VendaView extends JFrame {
     JTable table_produtos;
     ArrayList<Item> rows = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel();
-    public VendaView(Venda venda, View view){
+    public VendaView(Venda venda, Cardapio cardapio, View view){
         table_produtos = new JTable();
-        //for (int i = 0; i < view.cardapioView.cardapio.getProduto().size(); i++) {
-        //    dropdown_produto.addItem(view.cardapioView.cardapio.getProduto().get(i).getNome());
-       // }
+        for (int i = 0; i < cardapio.getProduto().size(); i++) {
+            dropdown_produto.addItem(cardapio.getProduto().get(i).getNome());
+        }
+
         this.setLayout(null);
         this.setTitle("Vendas");
         this.setSize(1000,440);
@@ -96,14 +96,14 @@ public class VendaView extends JFrame {
         this.add(label_valor_total);
         label_cliente_final.setBounds(480,340,100,30);
         label_desconto_final.setBounds(650,340,100,30);
-        label_valor_total.setBounds(800,340,120,30);
+        label_valor_total.setBounds(800,340,120,40);
 
         //Voltar ao menu
         this.add(voltar);
         voltar.setBounds(50, 310,200,30);
 
         adicionar_produto.addActionListener(
-            e -> adicionarProduto(venda)
+            e -> adicionarProduto(cardapio, venda)
         );
         adicionar_cliente.addActionListener(
             e -> adicionarCliente(venda)
@@ -121,11 +121,12 @@ public class VendaView extends JFrame {
             e -> Voltar(view)
         );
     }
-    private void adicionarProduto(Venda venda) {
-        int index = dropdown_produto.getSelectedIndex();
-        dropdown_produtos_adicionados.addItem(lista_produtos.get(index));
 
-        Item item = new Item(lista_produtos.get(index).getNome(), "1", lista_produtos.get(index).getPreco());
+    private void adicionarProduto(Cardapio cardapio, Venda venda) {
+        int index = dropdown_produto.getSelectedIndex();
+        dropdown_produtos_adicionados.addItem(cardapio.getProduto().get(index));
+
+        Item item = new Item(cardapio.getProduto().get(index).getNome(), "1", cardapio.getProduto().get(index).getPreco());
         rows.add(item);
         model.setRowCount(0);
         for (Item row : rows) {
@@ -136,7 +137,7 @@ public class VendaView extends JFrame {
             };
             model.addRow(fila);
         }
-        venda.adicionarProduto(lista_produtos.get(index));
+        venda.adicionarProduto(cardapio.getProduto().get(index));
         label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
     }
 
