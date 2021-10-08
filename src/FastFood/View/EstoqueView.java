@@ -188,18 +188,14 @@
                     JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
                 }
             );
-<<<<<<< HEAD
-            button_Custo.addActionListener(
-                    e->{
-                        int select;
-                        select= combo.getSelectedIndex();
-                        combo.setSelectedItem(produto.getPreco());
-                        insumo.setCusto(parseFloat(custo_new.getText()));
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
-                    }
-=======
             alterar_custo_btn.addActionListener(
                 e->{
+                    int index = combo.getSelectedIndex();
+                    estoque.getInsumoByIndex(index).setCusto(Float.parseFloat(custo_input.getText()));
+                    combo.removeAllItems();
+                    for (int i=0; i<estoque.getInsumo().size(); i++){
+                        combo.addItem(estoque.getInsumo().get(i));
+                    }
                     JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
                 }
             );
@@ -239,15 +235,6 @@
             voltar_delete.setBounds(98,340,200,50);
 
             button_atualizar2.addActionListener(
-<<<<<<< HEAD
-                    e ->{
-                        int selectIndex;
-                        selectIndex = combo2.getSelectedIndex();
-                        //combo2.getSelectedIndex(produto.getNome());
-                        combo2.removeItemAt(selectIndex);
-                        JOptionPane.showMessageDialog(null,"Alteração feita com sucesso");
-                    }
-
                 e -> {
                     int index;
                     index = deletar_input.getSelectedIndex();

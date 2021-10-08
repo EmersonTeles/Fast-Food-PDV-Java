@@ -1,6 +1,7 @@
 package FastFood.View;
 import FastFood.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -12,6 +13,10 @@ public class CardapioView extends JFrame {
     JButton button_deletar = new JButton("Deletar");
     JButton voltar = new JButton("Voltar");
     Cardapio cardapio = new Cardapio();
+    JTable tableCardapio;
+    ArrayList<Item> rows = new ArrayList<>();
+    DefaultTableModel model = new DefaultTableModel();
+
     public CardapioView(Estoque estoque, View view) {
 
         add(button_cadastrar);
@@ -34,6 +39,11 @@ public class CardapioView extends JFrame {
         voltar.setBounds(98, 340, 200, 50);
         button_Cardapio.setBounds(120, 50, 150, 60);
 
+        button_Cardapio.addActionListener(
+                e->{
+                    CardapioTable(estoque);
+                }
+        );
 
         button_cadastrar.addActionListener(
                 e -> {
@@ -58,6 +68,35 @@ public class CardapioView extends JFrame {
                     Voltar(view);
                 }
         );
+    }
+
+    public void CardapioTable(Estoque estoque){
+        JFrame JFCardapio = new JFrame();
+        JLabel tituloCardapio= new JLabel("Cardápio");
+
+        this.add(tituloCardapio);
+        tableCardapio= new JTable();
+        this.setLayout(null);
+        this.setTitle("Cardapio");
+        this.setSize(1000,440);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setResizable(false);
+
+        model.addColumn("Produto");
+        model.addColumn("Quantidade");
+        model.addColumn("Preço Unitario");
+        this.add(tableCardapio);
+        tableCardapio.setRowHeight(30);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(tableCardapio);
+        this.add(scrollPane);
+        scrollPane.setBounds(480,40,480,300);
+        tableCardapio.setModel(model);
+        tableCardapio.setEnabled(false);
+
+
     }
 
     public void Cadastra(Estoque estoque) {

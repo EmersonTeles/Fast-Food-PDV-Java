@@ -10,6 +10,7 @@ public class Insumo {
     private float custo;
 
     public Insumo(String nome, float custo){
+
         cadastrar(nome, custo);
     }
     public void cadastrar(String nome, float custo) {
