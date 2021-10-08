@@ -95,7 +95,7 @@ public class VendaView extends JFrame {
         this.add(label_valor_total);
         label_cliente_final.setBounds(480,340,100,30);
         label_desconto_final.setBounds(650,340,100,30);
-        label_valor_total.setBounds(800,340,120,40);
+        label_valor_total.setBounds(800,340,150,30);
 
         //Voltar ao menu
         this.add(voltar);
@@ -163,7 +163,7 @@ public class VendaView extends JFrame {
         Object[] options = { "Não", "Sim" };
         int opcao = JOptionPane.showOptionDialog(null, "Deseja finalizar a venda no valor de R$" + venda.getvalorFinal() + "?", "Finalizar Venda", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
-        if( opcao == 1){
+        if( opcao == 1 ){
             view.caixaView.caixa.setVendas(venda);
             view.caixaView.caixa.setValorFechamento(venda.getvalorFinal());
             Voltar(view);

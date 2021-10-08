@@ -106,7 +106,7 @@ public class View extends JFrame{
             JOptionPane.showMessageDialog(null, "Caixa está fechado, por favor abra-o antes de realizar uma venda.");
         }else{
             if(cardapioView == null){
-                JOptionPane.showMessageDialog(null, "Não existe nenhum produto adicionado para vender! por favor adicione antes de abrir as vendas.");
+                JOptionPane.showMessageDialog(null, "Não existe nenhum produto adicionado para vender! Por favor adicione antes de abrir as vendas.");
             }else {
                 vendaView = new VendaView(venda, cardapioView.cardapio, this);
                 vendaView.setVisible(true);

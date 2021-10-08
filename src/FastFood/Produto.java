@@ -18,8 +18,11 @@ public abstract class Produto {
         addSize();
         setId();
     }
-
-    public void editar() {
+    public void editar(String nome, float preco, String tamanho, ArrayList<Insumo> composicao) {
+        this.setNome(nome);
+        this.setPreco(preco);
+        this.setTamnho(tamanho);
+        this.setComposicao(composicao);
     }
     public void deletar() {
     }
@@ -55,8 +58,5 @@ public abstract class Produto {
     }
     public void setComposicao(ArrayList<Insumo> composicao) {
         this.composicao = composicao;
-    }
-    public void addComposicao(Insumo insumo) {
-        this.composicao.add(insumo);
     }
 }

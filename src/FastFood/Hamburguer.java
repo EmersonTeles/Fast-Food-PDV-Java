@@ -1,6 +1,5 @@
 package FastFood;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Hamburguer extends Produto {
 
@@ -15,6 +14,18 @@ public class Hamburguer extends Produto {
     }
     public void editar(){
     }
-    public void fazerHamburguer(int quantidade) {
+    public String fazerHamburguer(Estoque estoque) {
+        for(int i = 0; i < getComposicao().size(); i++){
+            for(int j = 0; j < estoque.getInsumo().size(); j++){
+                if(estoque.getInsumo().get(j) == getComposicao().get(i)){
+                    if(estoque.getQuantidade().get(j) > 0){
+                        estoque.decreaseQuantidade(j);
+                    }else{
+                        return "Estoque indiponível.";
+                    }
+                }
+            }
+        }
+        return "";
     }
 }

@@ -1,4 +1,5 @@
 package FastFood;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Bebida extends Produto {
@@ -7,12 +8,22 @@ public class Bebida extends Produto {
         return getNome();
     }
 
-    public Bebida(String nome, float preco, String tamanho) {
+    public Bebida(String nome, float preco, String tamanho, ArrayList<Insumo> composicao) {
         super();
-        this.setNome(nome);
-        this.setPreco(preco);
-        this.setTamnho(tamanho);
+        cadastrar(nome, preco, tamanho, composicao);
     }
-    public void fazerBebida() {
+    public String fazerBebida(Estoque estoque) {
+        for(int i = 0; i < getComposicao().size(); i++){
+            for(int j = 0; j < estoque.getInsumo().size(); j++){
+                if(estoque.getInsumo().get(j) == getComposicao().get(i)){
+                    if(estoque.getQuantidade().get(j) > 0){
+                        estoque.decreaseQuantidade(j);
+                    }else{
+                        return "Estoque indiponível.";
+                    }
+                }
+            }
+        }
+        return "";
     }
 }
