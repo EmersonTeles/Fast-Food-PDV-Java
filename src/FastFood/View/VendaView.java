@@ -31,7 +31,6 @@ public class VendaView extends JFrame {
         for (int i = 0; i < cardapio.getProduto().size(); i++) {
             dropdown_produto.addItem(cardapio.getProduto().get(i).getNome());
         }
-
         this.setLayout(null);
         this.setTitle("Vendas");
         this.setSize(1000,440);

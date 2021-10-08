@@ -210,15 +210,18 @@
 
             JButton button_atualizar2= new JButton("Deletar");
             JLabel desc_New2 = new JLabel("Escolha abaixo o Produto que deseja:");
-            JComboBox<String> deletar_input = new JComboBox<String>();
+            JComboBox<Insumo> deletar_input = new JComboBox<Insumo>();
             JButton voltar_delete = new JButton("Voltar");
+            for (int i = 0; i < estoque.getInsumo().size(); i++) {
+                deletar_input.addItem(estoque.getInsumo().get(i));
+            }
 
             JFdeletar.add(deletar_input);
-            deletar_input.addItem("Brasil");
-            deletar_input.addItem("Argentina");
-            deletar_input.addItem("Brasil");
-            deletar_input.addItem("Brasil");
-            deletar_input.addItem("Brasil");
+            //deletar_input.addItem("Brasil");
+            //deletar_input.addItem("Argentina");
+            //deletar_input.addItem("Brasil");
+            //deletar_input.addItem("Brasil");
+            //deletar_input.addItem("Brasil");
             JFdeletar.add(button_atualizar2);
             JFdeletar.add(voltar_delete);
             JFdeletar.add(desc_New2);

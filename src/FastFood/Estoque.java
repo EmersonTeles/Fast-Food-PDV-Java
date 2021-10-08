@@ -1,5 +1,6 @@
 package FastFood;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Estoque {
     private String nome;
