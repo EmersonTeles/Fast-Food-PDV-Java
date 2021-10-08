@@ -8,8 +8,10 @@ public class Cardapio {
         this.addProduto(produto);
     }
     public void editar() {
+
     }
-    public void deletar() {
+    public void deletar(int index) {
+        produtos.remove(index);
     }
     public void addProduto(Produto produto){
         produtos.add(produto);
