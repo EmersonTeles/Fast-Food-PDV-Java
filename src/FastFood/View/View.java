@@ -19,7 +19,6 @@ public class View extends JFrame{
     EstoqueView estoqueView;
     CardapioView cardapioView;
     Estoque estoque = new Estoque();
-
     public View (){
         this.setLayout(null);
         this.add(hamburguer_btn);
@@ -38,7 +37,7 @@ public class View extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
 
-        Tema.setFont(new Font("Sans serif", Font.BOLD,30));
+        Tema.setFont(new Font("Sans serif", Font.BOLD,25));
         Tema.setForeground(Color.BLACK);
         Tema.setBounds(160,30,80,30);
         caixa_btn.setBounds(120, 100, 160, 30);
@@ -76,7 +75,7 @@ public class View extends JFrame{
         );
         venda_btn.addActionListener(
             e -> {
-                abrirVendasView();
+                abrirVendasView(cardapioView);
             }
         );
         estoque_btn.addActionListener(
@@ -99,16 +98,20 @@ public class View extends JFrame{
         this.dispose();
     }
 
-    private void abrirVendasView(){
+    private void abrirVendasView(CardapioView cardapioView){
         Venda venda = new Venda();
         if(caixaView == null || caixaView.caixa == null){
             JOptionPane.showMessageDialog(null, "Caixa está fechado, por favor abra-o antes de realizar uma venda.");
         }else if (!caixaView.caixa.getIsCaixaOpen()){
             JOptionPane.showMessageDialog(null, "Caixa está fechado, por favor abra-o antes de realizar uma venda.");
         }else{
-            vendaView = new VendaView(venda, this);
-            vendaView.setVisible(true);
-            this.dispose();
+            if(cardapioView == null){
+                JOptionPane.showMessageDialog(null, "Não existe nenhum produto adicionado para vender! por favor adicione antes de abrir as vendas.");
+            }else {
+                vendaView = new VendaView(venda, cardapioView.cardapio, this);
+                vendaView.setVisible(true);
+                this.dispose();
+            }
         }
     }
     
