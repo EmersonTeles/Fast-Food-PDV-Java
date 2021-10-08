@@ -28,8 +28,8 @@ public class VendaView extends JFrame {
     DefaultTableModel model = new DefaultTableModel();
     public VendaView(Venda venda, Cardapio cardapio, View view){
         table_produtos = new JTable();
-        for (int i = 0; i < cardapio.getProduto().size(); i++) {
-            dropdown_produto.addItem(cardapio.getProduto().get(i).getNome());
+        for (int i = 0; i < cardapio.getProdutos().size(); i++) {
+            dropdown_produto.addItem(cardapio.getProdutos().get(i).getNome());
         }
         this.setLayout(null);
         this.setTitle("Vendas");
@@ -123,9 +123,9 @@ public class VendaView extends JFrame {
 
     private void adicionarProduto(Cardapio cardapio, Venda venda) {
         int index = dropdown_produto.getSelectedIndex();
-        dropdown_produtos_adicionados.addItem(cardapio.getProduto().get(index));
+        dropdown_produtos_adicionados.addItem(cardapio.getProdutos().get(index));
 
-        Item item = new Item(cardapio.getProduto().get(index).getNome(), "1", cardapio.getProduto().get(index).getPreco());
+        Item item = new Item(cardapio.getProdutos().get(index).getNome(), "1", cardapio.getProdutos().get(index).getPreco());
         rows.add(item);
         model.setRowCount(0);
         for (Item row : rows) {
@@ -136,7 +136,7 @@ public class VendaView extends JFrame {
             };
             model.addRow(fila);
         }
-        venda.adicionarProduto(cardapio.getProduto().get(index));
+        venda.adicionarProduto(cardapio.getProdutos().get(index));
         label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
     }
 

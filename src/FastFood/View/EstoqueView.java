@@ -124,16 +124,13 @@
             JFrame JFeditar = new JFrame();
             JLabel editarTela= new JLabel("Editar");
             JLabel custo= new JLabel("Digite o novo custo:");
-            JLabel quan_Itens= new JLabel("Digite a nova quantia de Itens:");
             JButton alterar_nome_btn = new JButton("Atualizar");
             JButton alterar_custo_btn = new JButton("Atualizar Custo");
-            JButton alterar_quantidade_btn = new JButton("Atualizar Quantidade");
             JButton voltar_editar = new JButton("Voltar");
             JLabel descricao= new JLabel("Digite o novo nome do insumo que deseja:");
             JLabel desc_New = new JLabel("Escolha abaixo o insumo que deseja:");
             JTextField nome_input = new JTextField(30);
             JTextField custo_input = new JTextField(8);
-            JTextField quantidade_input = new JTextField(30);
             JComboBox<Insumo> combo = new JComboBox<>();
 
             for (int i = 0; i < estoque.getInsumo().size(); i++) {
@@ -147,10 +144,7 @@
             JFeditar.add(alterar_custo_btn);
             JFeditar.add(desc_New);
             JFeditar.add(custo_input);
-            JFeditar.add(alterar_quantidade_btn);
             JFeditar.add(custo);
-            JFeditar.add(quan_Itens);
-            JFeditar.add(quantidade_input);
             JFeditar.setLayout(null);
             JFeditar.add(editarTela);
             JFeditar.add(nome_input);
@@ -168,10 +162,6 @@
             custo.setBounds(140,200,250,100);
             custo_input.setBounds(50, 265,300,20);
             alterar_custo_btn.setBounds(115,295,150,30);
-
-            quan_Itens.setBounds(100,335,300,20);
-            quantidade_input.setBounds(50,365,300,20);
-            alterar_quantidade_btn.setBounds(120,395,150,30);
 
             desc_New.setBounds(75,20,250,100);
             combo.setBounds(115,90,150,20);
@@ -202,6 +192,7 @@
             voltar_editar.addActionListener(
                 e -> {
                     JFeditar.dispose();
+                    this.setVisible(true);
                 }
             );
         }
