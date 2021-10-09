@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Venda {
     private ArrayList<Produto> itensVendidos = new ArrayList<>();
     private float valorFinal;
-    private String formaDePagamento;
     private float desconto;
     private String Cliente;
     public Venda(){
@@ -25,25 +24,17 @@ public class Venda {
     public void desconto(float desconto) {
         setDesconto(desconto);
     }
-    public void finalizarVenda() {
-    }
-    public ArrayList<Produto> getItensVendidos() {
-        return itensVendidos;
-    }
-    public void setItensVendidos(ArrayList<Produto> itensVendidos) {
-        this.itensVendidos = itensVendidos;
-    }
+
     public float getvalorFinal() {
-        return valorFinal;
+        setvalorFinal(0);
+        for( Produto produto : itensVendidos){
+            setvalorFinal(this.valorFinal + produto.getPreco());
+        }
+        setvalorFinal(this.valorFinal- (this.valorFinal  * (getDesconto()/100)));
+        return this.valorFinal;
     }
     public void setvalorFinal(float valorFinal) {
         this.valorFinal = valorFinal;
-    }
-    public String getFormaDePagamento() {
-        return formaDePagamento;
-    }
-    public void setFormaDePagamento(String formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
     }
     public float getDesconto() {
         return desconto;

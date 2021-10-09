@@ -24,8 +24,9 @@ public class View extends JFrame{
     BuscaView buscaView;
     Estoque estoque = new Estoque();
     Cardapio cardapio = new Cardapio();
-
+    DefaultValues defaultValues;
     public View (){
+        defaultValues = new DefaultValues(this);
         this.setLayout(null);
         this.add(hamburguer_btn);
         this.add(insumo_btn);

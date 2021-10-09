@@ -137,7 +137,7 @@ public class VendaView extends JFrame {
             model.addRow(fila);
         }
         venda.adicionarProduto(cardapio.getProdutos().get(index));
-        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
+        label_valor_total.setText("Valor total: R$" + venda.getvalorFinal());
     }
 
     private void retirarProduto(Venda venda){
@@ -147,7 +147,7 @@ public class VendaView extends JFrame {
         rows.remove(index);
         model.removeRow(index);
         venda.retirarProduto(index);
-        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
+        label_valor_total.setText("Valor total: R$" + venda.getvalorFinal());
     }
     private void adicionarCliente(Venda venda){
         venda.adicionarCliente(nome_cliente.getText());
@@ -157,7 +157,7 @@ public class VendaView extends JFrame {
     private void adicionarDesconto(Venda venda){
         venda.desconto(Float.parseFloat(num_desconto.getText()));
         label_desconto_final.setText("Desconto: " + venda.getDesconto() + "%");
-        label_valor_total.setText("Valor total: R$" + ValorFinal(venda));
+        label_valor_total.setText("Valor total: R$" +  venda.getvalorFinal());
     }
     private void finalizarVenda(Venda venda, View view){
         Object[] options = { "Não", "Sim" };
@@ -168,15 +168,6 @@ public class VendaView extends JFrame {
             view.caixaView.caixa.setValorFechamento(venda.getvalorFinal());
             Voltar(view);
         }
-    }
-    private float ValorFinal(Venda venda){
-        float valorFinal = 0;
-        for (Item row : rows) {
-            valorFinal += row.preco;
-        }
-        valorFinal = valorFinal - (valorFinal * (venda.getDesconto()/100));
-        venda.setvalorFinal(valorFinal);
-        return valorFinal;
     }
     private void Voltar(View view){
         view.setVisible(true);
