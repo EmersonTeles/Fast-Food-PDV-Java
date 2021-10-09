@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Ela cria uma nova bebida que é herdada pelo produto.
+ * Ela cria uma nova bebida que e herdada pelo produto.
  * @author Fellipe e Emerson
  * @version 1.0 (out 2021)
  */
@@ -20,7 +20,7 @@ public class Bebida extends Produto {
     }
 
     /**
-     *Fazer bebida ela recebe o insumo que está no estoque para poder ser feita a bebida desejada.
+     *Fazer bebida ela recebe o insumo que esta no estoque para poder ser feita a bebida desejada.
      * @author Fellipe e Emerson
      * @version 1.0 (out 2021)
      */

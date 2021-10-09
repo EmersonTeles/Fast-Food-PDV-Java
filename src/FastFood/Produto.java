@@ -2,7 +2,7 @@ package FastFood;
 
 import java.util.ArrayList;
 /**
- * A classe produto cadastra,edita e deleta os produtos que são criados. Os produtos são em geral Bebidas e Hamburguers.
+ * A classe produto cadastra,edita e deleta os produtos que sao criados. Os produtos sao em geral Bebidas e Hamburguers.
  * @author Fellipe e Emerson
  * @version 1.0 (out 2021)
  */

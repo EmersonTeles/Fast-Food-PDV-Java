@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
- * CardapioView permite que o usuario veja todos os produtos que estão disponiveis para a venda.
+ * CardapioView permite que o usuario veja todos os produtos que estao disponiveis para a venda.
  * @author Fellipe e Emerson
  * @version 1.0 (out 2021)
  */
@@ -158,7 +158,7 @@ public class CardapioView extends JFrame {
         JFrame JFeditar = new JFrame();
         JLabel label_selecione_produto = new JLabel("Selecione o Produto:", SwingConstants.CENTER);
         JLabel label_nome_Produto = new JLabel("Novo nome do Produto:", SwingConstants.CENTER);
-        JLabel label_nome_Preço = new JLabel("Novo preço do Produto:", SwingConstants.CENTER);
+        JLabel label_nome_Preco = new JLabel("Novo preço do Produto:", SwingConstants.CENTER);
         JLabel label_tamanho_burguer = new JLabel("Novo tamanho Produto:", SwingConstants.CENTER);
         JLabel label_escolha_insumo = new JLabel("Escolha os novos Insumo: ", SwingConstants.CENTER);
 
@@ -188,7 +188,7 @@ public class CardapioView extends JFrame {
         dropdown_tamanho.addItem("Médio");
         dropdown_tamanho.addItem("Grande");
         JFeditar.add(nome_produto_text);
-        JFeditar.add(label_nome_Preço);
+        JFeditar.add(label_nome_Preco);
         JFeditar.add(voltar_Editar);
         JFeditar.add(preco_produto_text);
         JFeditar.add(label_tamanho_burguer);
@@ -220,7 +220,7 @@ public class CardapioView extends JFrame {
         dropdown_insumos.setBounds(100, 200, 200, 20);
         button_Insumo.setBounds(75, 229, 250, 20);
 
-        label_nome_Preço.setBounds(80, 250, 240, 30);
+        label_nome_Preco.setBounds(80, 250, 240, 30);
         preco_produto_text.setBounds(75, 280, 250, 20);
         label_tamanho_burguer.setBounds(80, 300, 240, 30);
         dropdown_tamanho.setBounds(75, 330, 250, 20);
@@ -301,8 +301,8 @@ public class CardapioView extends JFrame {
         JFrame JFcadastrarBurguer = new JFrame();
 
         JTextField nome_Hamburguer_Text = new JTextField(30);
-        JTextField nome_Preço_Text = new JTextField(30);
-        JLabel nome_Preço = new JLabel("Digite o preço do Hamburguer:");
+        JTextField nome_Preco_Text = new JTextField(30);
+        JLabel nome_Preco = new JLabel("Digite o preço do Hamburguer:");
         JLabel pesoHamb = new JLabel("Digite o tamanho do Hamburguer:");
         JLabel hamburguer_Insumo = new JLabel("Escolha o Insumo");
         JLabel descricao_hamburguer = new JLabel("Cadastrar Hamburguer");
@@ -324,9 +324,9 @@ public class CardapioView extends JFrame {
         dropTamanhoHam.addItem("Grande");
         JFcadastrarBurguer.add(escolher_Insumo);
         JFcadastrarBurguer.add(nome_Hamburguer_Text);
-        JFcadastrarBurguer.add(nome_Preço);
+        JFcadastrarBurguer.add(nome_Preco);
         JFcadastrarBurguer.add(voltar_cadastro_hamburguer);
-        JFcadastrarBurguer.add(nome_Preço_Text);
+        JFcadastrarBurguer.add(nome_Preco_Text);
         JFcadastrarBurguer.add(pesoHamb);
         JFcadastrarBurguer.add(hamburguer_Insumo);
         JFcadastrarBurguer.add(dropInsumo);
@@ -342,8 +342,8 @@ public class CardapioView extends JFrame {
         descricao_hamburguer.setBounds(140, 90, 140, 30);
         nome_Hamburguer.setBounds(110, 115, 180, 30);
         nome_Hamburguer_Text.setBounds(80, 150, 250, 20);
-        nome_Preço.setBounds(110, 250, 200, 30);
-        nome_Preço_Text.setBounds(80, 280, 250, 20);
+        nome_Preco.setBounds(110, 250, 200, 30);
+        nome_Preco_Text.setBounds(80, 280, 250, 20);
         pesoHamb.setBounds(110, 300, 200, 30);
         dropTamanhoHam.setBounds(80, 330, 250, 20);
         cadastrar_hamburguer_button.setBounds(110, 360, 200, 30);
@@ -369,7 +369,7 @@ public class CardapioView extends JFrame {
         cadastrar_hamburguer_button.addActionListener(
                 e -> {
                     String nome_hamburguer = nome_Hamburguer_Text.getText();
-                    float preco_hamburguer = Float.parseFloat(nome_Preço_Text.getText());
+                    float preco_hamburguer = Float.parseFloat(nome_Preco_Text.getText());
                     String tamanho_hamburguer = String.valueOf(dropTamanhoHam.getSelectedItem());
                     if(composicao.size()>0){
                         cardapio.cadastrar(new Hamburguer(nome_hamburguer, preco_hamburguer, tamanho_hamburguer, composicao));

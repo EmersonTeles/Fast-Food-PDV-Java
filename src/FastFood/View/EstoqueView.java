@@ -3,7 +3,7 @@
     import javax.swing.*;
 
     /**
-     * O usuario consegue cadastrar, editar e deletar os insumos no estoque através da interface.
+     * O usuario consegue cadastrar, editar e deletar os insumos no estoque atraves da interface.
      * @author Fellipe e Emerson
      * @version 1.0 (out 2021)
      */

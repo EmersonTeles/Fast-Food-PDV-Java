@@ -1,7 +1,7 @@
 package FastFood;
 
 /**
- * A classe insumo ela cadastra,edita e deleta os insumos que estão dentro do estoque.
+ * A classe insumo ela cadastra,edita e deleta os insumos que estao dentro do estoque.
  * @author Fellipe e Emerson
  * @version 1.0 (out 2021)
  */

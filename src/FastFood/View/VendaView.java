@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 /**
- * VendaView permite que o usuario cadastre a venda dos produtos que estão no cardapio.
+ * VendaView permite que o usuario cadastre a venda dos produtos que estao no cardapio.
  * Permite que o mesmo exclua os produtos que já foram adicionados ao carrinho.
  * Permite que seja adicionado o nome do cliente.
  * Permite adicionar um desconto para o valor total da compra.

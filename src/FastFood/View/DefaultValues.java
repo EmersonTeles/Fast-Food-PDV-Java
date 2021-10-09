@@ -1,7 +1,11 @@
 package FastFood.View;
 import FastFood.*;
 import java.util.ArrayList;
-
+/**
+ * DefaultValues sao os dados pre-cadastrados.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class DefaultValues {
     ArrayList<Insumo> insumos = new ArrayList<>();
     ArrayList<Produto> produtos = new ArrayList<>();
