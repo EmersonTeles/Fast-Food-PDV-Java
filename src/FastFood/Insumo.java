@@ -1,5 +1,10 @@
 package FastFood;
 
+/**
+ * A classe insumo ela cadastra,edita e deleta os insumos que estão dentro do estoque.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class Insumo {
     public String toString() {
         return  nome;

@@ -1,6 +1,11 @@
 package FastFood;
 
 import java.util.ArrayList;
+/**
+ * A classe cardapio ela recebe os produtos cadastrados e lista eles na tela.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 
 public class Cardapio {
     private final ArrayList<Produto> produtos = new ArrayList<>();

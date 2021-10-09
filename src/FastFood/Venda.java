@@ -1,6 +1,12 @@
 package FastFood;
 
 import java.util.ArrayList;
+/**
+ * A classe venda adiciona produto, retira o produto, adiciona cliente da o desconto.
+ * Ao final de adicionar na venda, ela soma todos os valores que foram comprados e dar o valor final para o caixa.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 
 public class Venda {
     private ArrayList<Produto> itensVendidos = new ArrayList<>();

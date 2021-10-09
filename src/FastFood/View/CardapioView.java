@@ -5,6 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+/**
+ * CardapioView permite que o usuario veja todos os produtos que estão disponiveis para a venda.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class CardapioView extends JFrame {
     JLabel tema = new JLabel("Opções:");
     JButton button_Cardapio = new JButton("Cardápio");

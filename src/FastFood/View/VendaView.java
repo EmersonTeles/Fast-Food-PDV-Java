@@ -4,6 +4,15 @@ import FastFood.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+/**
+ * VendaView permite que o usuario cadastre a venda dos produtos que estão no cardapio.
+ * Permite que o mesmo exclua os produtos que já foram adicionados ao carrinho.
+ * Permite que seja adicionado o nome do cliente.
+ * Permite adicionar um desconto para o valor total da compra.
+ * Permite finalizar a venda, assim obtendo todos os valores da compra.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 
 public class VendaView extends JFrame {
     JComboBox<String> dropdown_produto = new JComboBox<>();
@@ -176,7 +185,11 @@ public class VendaView extends JFrame {
     public static void main(String[] args){
     }
 }
-
+/**
+ * A classe item recebe o nome, quantidade e preço do item.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 class Item{
     String nome;
     String quantidade;

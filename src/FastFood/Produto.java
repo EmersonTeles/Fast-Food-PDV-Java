@@ -1,7 +1,11 @@
 package FastFood;
 
 import java.util.ArrayList;
-
+/**
+ * A classe produto cadastra,edita e deleta os produtos que são criados. Os produtos são em geral Bebidas e Hamburguers.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public abstract class Produto {
     public String toString() {
         return  nome;

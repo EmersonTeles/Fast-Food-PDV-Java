@@ -3,6 +3,11 @@ import FastFood.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Permite o usuario acessar todos as outras classes view.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class View extends JFrame{
     JButton insumo_btn= new JButton("Insumo");
     JButton bebida_btn= new JButton("Bebida");

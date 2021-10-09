@@ -1,7 +1,11 @@
 package FastFood;
 import java.util.ArrayList;
 import java.util.Date;
-
+/**
+ * A classe caixa ela recebe a abertura com o valor inicial desejado e o fechamento com o valor final dos pedidos.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class Caixa {
     private Date dataInicio;
 

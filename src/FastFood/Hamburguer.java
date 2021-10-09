@@ -1,6 +1,10 @@
 package FastFood;
 import java.util.*;
-
+/**
+ * A classe hamburguer cadastra,edita e deleta os Hamburgueres criados.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class Hamburguer extends Produto {
 
     @Override
@@ -14,6 +18,11 @@ public class Hamburguer extends Produto {
     }
     public void editar(){
     }
+    /**
+     * O método fazerHamburguer ele recebe os insumos do estoque o hamburguer e criado de acordo com os itens selecionados no estoque.
+     * @author Fellipe e Emerson
+     * @version 1.0 (out 2021)
+     */
     public String fazerHamburguer(Estoque estoque) {
         for(int i = 0; i < getComposicao().size(); i++){
             for(int j = 0; j < estoque.getInsumo().size(); j++){

@@ -2,6 +2,12 @@ package FastFood.View;
 import FastFood.Caixa;
 import javax.swing.*;
 import java.util.Date;
+/**
+ * Permite abrir o caixa, fechar o caixa e voltar.
+ * Dessa forma só sendo possivel ir para o menu de vendas se o caixa já estiver aberto.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 
 public class CaixaView extends JFrame{
     JButton abrir_caixa = new JButton("Abrir Caixa");

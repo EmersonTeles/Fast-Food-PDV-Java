@@ -2,6 +2,11 @@
     import FastFood.*;
     import javax.swing.*;
 
+    /**
+     * O usuario consegue cadastrar, editar e deletar os insumos no estoque através da interface.
+     * @author Fellipe e Emerson
+     * @version 1.0 (out 2021)
+     */
     public class EstoqueView extends JFrame{
         JLabel tema = new JLabel("Opções:");
         JButton button_cadastrar = new JButton("Cadastrar");

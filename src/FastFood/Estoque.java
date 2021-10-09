@@ -1,7 +1,11 @@
 package FastFood;
 import java.util.ArrayList;
 import java.util.Map;
-
+/**
+ * Estoque cadastra, edita e deleta os insumos desejados.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class Estoque {
     ArrayList<Insumo> insumo = new ArrayList<Insumo>();
     ArrayList<Integer> quantidade = new ArrayList<Integer>();

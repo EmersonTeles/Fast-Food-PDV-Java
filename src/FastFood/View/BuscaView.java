@@ -3,7 +3,11 @@ import FastFood.*;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Permite buscar bebidas, hamburguers e insumos cadastrados.
+ * @author Fellipe e Emerson
+ * @version 1.0 (out 2021)
+ */
 public class BuscaView extends JFrame {
 
     JButton button_buscar_insumo = new JButton("Buscar insumo");
