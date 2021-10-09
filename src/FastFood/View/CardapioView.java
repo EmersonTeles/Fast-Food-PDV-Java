@@ -12,10 +12,9 @@ public class CardapioView extends JFrame {
     JButton button_editar = new JButton("Editar");
     JButton button_deletar = new JButton("Deletar");
     JButton voltar_deletar = new JButton("Voltar");
-    Cardapio cardapio = new Cardapio();
 
 
-    public CardapioView(Estoque estoque, View view) {
+    public CardapioView(Cardapio cardapio, Estoque estoque, View view) {
 
         add(button_cadastrar);
         add(button_deletar);
@@ -47,19 +46,19 @@ public class CardapioView extends JFrame {
         button_cadastrar.addActionListener(
                 e -> {
                     this.dispose();
-                    Cadastra(estoque);
+                    Cadastra(cardapio, estoque);
                 }
         );
         button_editar.addActionListener(
                 e -> {
                     this.dispose();
-                    EditarProduto(estoque);
+                    EditarProduto(cardapio, estoque);
                 }
         );
         button_deletar.addActionListener(
                 e -> {
                     this.dispose();
-                    deletar(estoque);
+                    deletar(cardapio, estoque);
                 }
         );
         voltar_deletar.addActionListener(
@@ -116,7 +115,7 @@ public class CardapioView extends JFrame {
         );
     }
 
-    public void Cadastra(Estoque estoque) {
+    public void Cadastra(Cardapio cardapio, Estoque estoque) {
         JFrame JFcadastrar = new JFrame();
         JLabel tema = new JLabel("Opções:");
         JButton adicionar_hamburguer = new JButton(" Adicionar Hamburguer");
@@ -139,18 +138,18 @@ public class CardapioView extends JFrame {
         adicionar_hamburguer.addActionListener(
             e -> {
                 JFcadastrar.dispose();
-                CadastrarHamburguer(estoque);
+                CadastrarHamburguer(cardapio, estoque);
             }
         );
         adicionar_bebida.addActionListener(
             e -> {
                 JFcadastrar.dispose();
-                CadastrarBebida(estoque);
+                CadastrarBebida(cardapio, estoque);
             }
         );
     }
 
-    private void EditarProduto(Estoque estoque){
+    private void EditarProduto(Cardapio cardapio, Estoque estoque){
         JFrame JFeditar = new JFrame();
         JLabel label_selecione_produto = new JLabel("Selecione o Produto:", SwingConstants.CENTER);
         JLabel label_nome_Produto = new JLabel("Novo nome do Produto:", SwingConstants.CENTER);
@@ -252,7 +251,7 @@ public class CardapioView extends JFrame {
         );
     }
 
-    private void deletar(Estoque estoque) {
+    private void deletar(Cardapio cardapio, Estoque estoque) {
         JFrame Deletar = new JFrame();
         JButton button_atualizar2 = new JButton("Deletar");
         JLabel desc_New2 = new JLabel("Escolha abaixo o produto que deseja:");
@@ -293,7 +292,7 @@ public class CardapioView extends JFrame {
                 }
         );
     }
-    private void CadastrarHamburguer(Estoque estoque) {
+    private void CadastrarHamburguer(Cardapio cardapio, Estoque estoque) {
         JFrame JFcadastrarBurguer = new JFrame();
 
         JTextField nome_Hamburguer_Text = new JTextField(30);
@@ -359,7 +358,7 @@ public class CardapioView extends JFrame {
                 e->{
                     int index= dropInsumo.getSelectedIndex();
                     composicao.add(estoque.getInsumoByIndex(index));
-                    JOptionPane.showMessageDialog(null,"Cadastro feita com sucesso");
+                    JOptionPane.showMessageDialog(null,"Insumo " + estoque.getInsumoByIndex(index) + " adicionado!");
                 }
         );
         cadastrar_hamburguer_button.addActionListener(
@@ -376,39 +375,40 @@ public class CardapioView extends JFrame {
                 }
         );
     }
-    private void CadastrarBebida(Estoque estoque){
+    private void CadastrarBebida(Cardapio cardapio, Estoque estoque){
         JFrame Bebida = new JFrame();
-        JLabel descricao_bebida = new JLabel("Fazer Bebida");
-        JLabel nome_Bebida = new JLabel("Digite o nome da Bebida:");
+        JLabel label_cadastrar_bebida = new JLabel("Cadastrar bebida");
+        JLabel label_nome_bebida = new JLabel("Digite o nome da bebida:");
+        JLabel label_preco_bebida = new JLabel("Digite o preço da bebida:");
+        JLabel label_tamanho_bebida = new JLabel("Digite o tamanho da bebida:");
+        JLabel label_confirma_insumo = new JLabel("Escolha o Insumo e confirme");
         JTextField nome_bebida_Text = new JTextField(30);
-        JLabel nome_Preço = new JLabel("Digite o preço da Bebida:");
-        JTextField nome_Preço_Text = new JTextField(30);
-        JLabel mlBebida = new JLabel("Digite o tamanho da bebida:");
-        JComboBox<String> tamanhoBebida = new JComboBox<>();
-        JLabel bebida_Insumo = new JLabel("Escolha o Insumo e confirme");
+        JTextField preco_bebida_Text = new JTextField(30);
+        JComboBox<String> dropdown_tamanho_bebida = new JComboBox<>();
+        JComboBox<Insumo> dropdown_insumos = new JComboBox<>();
         JButton button_Bebida_Insumo = new JButton("Confirme o Insumo");
-        JComboBox<Insumo> dropBebidaInsumo = new JComboBox<>();
-        JButton button_nome_bebida = new JButton("Fazer Bebida");
+        JButton button_nome_bebida = new JButton("Cadastrar");
         JButton voltar_bebida_btn = new JButton("Voltar");
         ArrayList<Insumo> composicao_bebida = new ArrayList<>();
 
         for (int i = 0; i < estoque.getInsumo().size(); i++) {
-            dropBebidaInsumo.addItem(estoque.getInsumo().get(i));
+            dropdown_insumos.addItem(estoque.getInsumo().get(i));
         }
-        Bebida.add(descricao_bebida);
+
+        Bebida.add(label_cadastrar_bebida);
         Bebida.add(voltar_bebida_btn);
-        tamanhoBebida.addItem("Pequeno");
-        tamanhoBebida.addItem("Médio");
-        tamanhoBebida.addItem("Grande");
-        Bebida.add(nome_Bebida);
+        dropdown_tamanho_bebida.addItem("Pequeno");
+        dropdown_tamanho_bebida.addItem("Médio");
+        dropdown_tamanho_bebida.addItem("Grande");
+        Bebida.add(label_nome_bebida);
         Bebida.add(nome_bebida_Text);
-        Bebida.add(nome_Preço);
-        Bebida.add(nome_Preço_Text);
-        Bebida.add(mlBebida);
-        Bebida.add(bebida_Insumo);
-        Bebida.add(dropBebidaInsumo);
+        Bebida.add(label_preco_bebida);
+        Bebida.add(preco_bebida_Text);
+        Bebida.add(label_tamanho_bebida);
+        Bebida.add(label_confirma_insumo);
+        Bebida.add(dropdown_insumos);
         Bebida.add(button_Bebida_Insumo);
-        Bebida.add(tamanhoBebida);
+        Bebida.add(dropdown_tamanho_bebida);
         Bebida.add(button_nome_bebida);
         Bebida.setLayout(null);
         Bebida.setTitle("Fazer Bebida");
@@ -417,16 +417,16 @@ public class CardapioView extends JFrame {
         Bebida.setLocationRelativeTo(null);
         Bebida.setVisible(true);
 
-        descricao_bebida.setBounds(150,90,100,30);
-        nome_Bebida.setBounds(110,115,150,30);
+        label_cadastrar_bebida.setBounds(150,90,100,30);
+        label_nome_bebida.setBounds(110,115,150,30);
         nome_bebida_Text.setBounds(80,150,250,20);
-        nome_Preço.setBounds(110,250,170,30);
-        nome_Preço_Text.setBounds(80,285,250,20);
-        mlBebida.setBounds(110,300,170,30);
-        tamanhoBebida.setBounds(80,330,250,20);
+        label_preco_bebida.setBounds(110,250,170,30);
+        preco_bebida_Text.setBounds(80,285,250,20);
+        label_tamanho_bebida.setBounds(110,300,170,30);
+        dropdown_tamanho_bebida.setBounds(80,330,250,20);
         button_nome_bebida.setBounds(110,360,160,30);
-        dropBebidaInsumo.setBounds(110,200,180,20);
-        bebida_Insumo.setBounds(110,170,180,30);
+        dropdown_insumos.setBounds(110,200,180,20);
+        label_confirma_insumo.setBounds(110,170,180,30);
         button_Bebida_Insumo.setBounds(80,229,250,20);
         voltar_bebida_btn.setBounds(80, 415, 250, 24);
 
@@ -436,18 +436,20 @@ public class CardapioView extends JFrame {
                 this.setVisible(true);
             }
         );
+
         button_Bebida_Insumo.addActionListener(
             e->{
-                int index= dropBebidaInsumo.getSelectedIndex();
+                int index= dropdown_insumos.getSelectedIndex();
                 composicao_bebida.add(estoque.getInsumoByIndex(index));
-                JOptionPane.showMessageDialog(null,"Cadastro feita com sucesso");
+                JOptionPane.showMessageDialog(null,"Insumo " + estoque.getInsumoByIndex(index) + " adicionado!");
             }
         );
+
         button_nome_bebida.addActionListener(
             e -> {
                 String nome = nome_bebida_Text.getText();
-                float preco = Float.parseFloat(nome_Preço_Text.getText());
-                String tamanho_bebida = String.valueOf(dropBebidaInsumo.getSelectedItem());
+                float preco = Float.parseFloat(preco_bebida_Text.getText());
+                String tamanho_bebida = String.valueOf(dropdown_tamanho_bebida.getSelectedItem());
                 if (composicao_bebida.size()>0) {
                     cardapio.cadastrar(new Bebida(nome, preco, tamanho_bebida, composicao_bebida));
                     JOptionPane.showMessageDialog(null,"Cadastro feita com sucesso");

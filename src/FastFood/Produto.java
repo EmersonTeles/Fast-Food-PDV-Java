@@ -3,6 +3,9 @@ package FastFood;
 import java.util.ArrayList;
 
 public abstract class Produto {
+    public String toString() {
+        return  nome;
+    }
     public String nome;
     private float preco;
     private static int size = 0;

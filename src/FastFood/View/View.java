@@ -9,16 +9,22 @@ public class View extends JFrame{
     JButton caixa_btn= new JButton("Caixa");
     JButton cardapio_btn= new JButton("Cardápio");
     JButton estoque_btn= new JButton("Estoque");
+
     JLabel Tema = new JLabel("Menu");
+
     JButton hamburguer_btn= new JButton("Hamburguer");
     JButton produto_btn= new JButton("Produto");
     JButton venda_btn= new JButton("Venda");
-    
+    JButton busca_btn = new JButton("Buscas");
+
     CaixaView caixaView;
     VendaView vendaView;
     EstoqueView estoqueView;
     CardapioView cardapioView;
+    BuscaView buscaView;
     Estoque estoque = new Estoque();
+    Cardapio cardapio = new Cardapio();
+
     public View (){
         this.setLayout(null);
         this.add(hamburguer_btn);
@@ -30,8 +36,9 @@ public class View extends JFrame{
         this.add(estoque_btn);
         this.add(venda_btn);
         this.add(produto_btn);
+        this.add(busca_btn);
         this.setTitle("Programa de Frente Caixa");
-        this.setSize(400,400);
+        this.setSize(400,600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -68,6 +75,13 @@ public class View extends JFrame{
         venda_btn.setHorizontalTextPosition(SwingConstants.RIGHT);
         venda_btn.setIconTextGap(5);
 
+        busca_btn.setBounds(120, 260, 160, 30);
+        busca_btn.setBackground(Color.WHITE);
+        busca_btn.setFocusPainted(false);
+        busca_btn.setVerticalTextPosition(SwingConstants.CENTER);
+        busca_btn.setHorizontalTextPosition(SwingConstants.RIGHT);
+        busca_btn.setIconTextGap(5);
+
         caixa_btn.addActionListener(
             e -> {
                 abrirCaixaView();
@@ -75,7 +89,7 @@ public class View extends JFrame{
         );
         venda_btn.addActionListener(
             e -> {
-                abrirVendasView(cardapioView);
+                abrirVendasView();
             }
         );
         estoque_btn.addActionListener(
@@ -88,6 +102,11 @@ public class View extends JFrame{
                 abrirCardapioView();
             }
         );
+        busca_btn.addActionListener(
+            e -> {
+                buscaView();
+            }
+        );
     }
 
     private void abrirCaixaView(){
@@ -98,7 +117,7 @@ public class View extends JFrame{
         this.dispose();
     }
 
-    private void abrirVendasView(CardapioView cardapioView){
+    private void abrirVendasView(){
         Venda venda = new Venda();
         if(caixaView == null || caixaView.caixa == null){
             JOptionPane.showMessageDialog(null, "Caixa está fechado, por favor abra-o antes de realizar uma venda.");
@@ -108,7 +127,7 @@ public class View extends JFrame{
             if(cardapioView == null){
                 JOptionPane.showMessageDialog(null, "Não existe nenhum produto adicionado para vender! Por favor adicione antes de abrir as vendas.");
             }else {
-                vendaView = new VendaView(venda, cardapioView.cardapio, this);
+                vendaView = new VendaView(venda, cardapio, this);
                 vendaView.setVisible(true);
                 this.dispose();
             }
@@ -124,9 +143,15 @@ public class View extends JFrame{
     }
     
     private void abrirCardapioView(){
-        cardapioView = new CardapioView(estoque, this);
+        cardapioView = new CardapioView(cardapio, estoque, this);
         cardapioView.setVisible(true);
         this.dispose();
     }
+    private void buscaView(){
+        buscaView = new BuscaView(cardapio, estoque, this);
+        buscaView.setVisible(true);
+        this.dispose();
+    }
+
 }
 
